@@ -1,0 +1,30 @@
+"""Coordenadas das sedes das ouvidorias (Selo Acessibilidade 2024).
+fonte: 'osm' = Nominatim (OpenStreetMap) via navegador; 'aprox' = estimativa a confirmar; 'shp' = shapefile SES-DF.
+"""
+SEDES = {
+ "Secretaria de Estado de Comunicação": ("SECOM", -15.78377, -47.90832, "osm", "Anexo do Palácio do Buriti, Praça do Buriti"),
+ "Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural": ("SEAGRI", -15.7365, -47.9035, "aprox", "Parque Estação Biológica (PqEB), Ed. Sede SEAGRI"),
+ "Administração Regional do SCIA": ("RA SCIA/Estrutural", -15.7845, -47.9915, "aprox", "Setor Central, Área Especial 3, Estrutural"),
+ "Companhia de Saneamento Ambiental do DF (CAESB)": ("CAESB", -15.8350, -48.0290, "aprox", "Av. Sibipiruna, Lotes 13/21, Águas Claras"),
+ "Instituto de Assistência à Saúde dos Servidores do DF (INAS)": ("INAS", -15.7935, -47.8825, "aprox", "Endereço a confirmar (Plano Piloto)"),
+ "Departamento de Trânsito do DF (DETRAN)": ("DETRAN-DF", -15.7762, -47.8935, "aprox", "SAM, Bloco T, Ed. Sede DETRAN"),
+ "Secretaria de Estado de Esporte e Lazer": ("SEL", -15.78830, -47.90062, "osm", "Centro de Convenções Ulysses Guimarães, SDC"),
+ "Secretaria de Estado da Segurança Pública": ("SSP-DF", -15.78095, -47.90851, "osm", "SAM, Conjunto A, Bloco A"),
+ "Fundação Hemocentro de Brasília (FHB)": ("FHB", -15.78464, -47.88589, "osm", "SMHN Quadra 3, Conjunto A, Bloco 3"),
+ "Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal": ("DF Legal", -15.80357, -47.96129, "osm", "SIA Trecho 3, Lotes 1545/1555"),
+ "Secretaria de Estado de Justiça e Cidadania": ("SEJUS", -15.7893, -47.9330, "aprox", "Estação Rodoferroviária, Ala Norte"),
+ "Controladoria-Geral do Distrito Federal": ("CGDF", -15.78402, -47.90802, "osm", "Anexo do Palácio do Buriti, 12º andar"),
+ "Administração Regional da Santa Maria": ("RA Santa Maria", -16.01677, -48.01677, "osm", "Administração Regional de Santa Maria – RA XIII"),
+ "Departamento de Estrada de Rodagem do DF (DER)": ("DER-DF", -15.77745, -47.90925, "osm", "SAM, Bloco C, Ed. Sede DER-DF"),
+ "Administração Regional de Planaltina": ("RA Planaltina", -15.61722, -47.65156, "osm", "Administração Regional de Planaltina – RA VI"),
+ "Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)": ("JUCIS-DF", -15.7700, -47.9120, "aprox", "SAAN (endereço a confirmar)"),
+ "Centrais de Abastecimento do Distrito Federal (CEASA)": ("CEASA-DF", -15.79159, -47.94873, "osm", "SIA Trecho 10, Lote 5"),
+ "Procuradoria-Geral do Distrito Federal (PGDF)": ("PGDF", -15.78296, -47.90642, "osm", "SAM, Bloco I, Ed. Sede PGDF"),
+ "Secretaria de Estado de Transporte e Mobilidade": ("SEMOB", -15.78377, -47.90832, "osm", "Anexo do Palácio do Buriti, Praça do Buriti"),
+ "Secretaria de Estado de Obras e Infraestrutura": ("SODF", -15.8155, -47.9350, "aprox", "Setor de Áreas Públicas (SAP), Lote B"),
+ "Companhia Imobiliária de Brasília (TERRACAP)": ("TERRACAP", -15.78206, -47.90798, "osm", "SAM, Bloco F, Ed. Sede TERRACAP"),
+ "Administração Regional da Ceilândia": ("RA Ceilândia", -15.82265, -48.10070, "osm", "Administração Regional de Ceilândia – RA IX"),
+ "Secretaria de Estado de Saúde": ("SES-DF", -15.7877, -47.8862, "aprox", "SRTVN Quadra 701, Ed. PO700"),
+ "Secretaria de Estado de Economia": ("SEEC", -15.78377, -47.90832, "osm", "Anexo do Palácio do Buriti, Praça do Buriti"),
+ "Secretaria de Estado de Administração Penitenciária": ("SEAPE", -15.77619, -47.94080, "osm", "Sede SEAPE (SCIA)"),
+}
