@@ -5,7 +5,7 @@ from geo_sedes import SEDES
 warnings.filterwarnings("ignore")
 
 df = pd.read_csv("data/raw/selo_acessibilidade_2024.csv")
-df.columns = ["ts", "orgao", "unidade", "cre", "libras", "selo", "itens", "capacitado", "servidor", "certs", "decl"]
+df.columns = ["ts", "orgao", "unidade", "cre", "libras", "selo", "itens", "capacitado", "decl"]
 df["orgao"] = df.orgao.str.strip()
 df["itens_l"] = df.itens.fillna("").apply(lambda s: [i.strip() for i in re.split(r",\s*", s) if i.strip()])
 
