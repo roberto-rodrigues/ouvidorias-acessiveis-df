@@ -121,6 +121,8 @@ function render(){
  if(ra){const l=raLayer.getLayers().find(l=>l.feature.properties.RA===ra);if(l)map.fitBounds(l.getBounds())}
 }
 document.getElementById('q').oninput=render;sel.onchange=render;render();
+// Clicar fora das regiões/marcadores (área vazia do mapa) volta à visão inicial.
+map.on('click',()=>{map.setView([-15.78,-47.85],10,{animate:true});if(sel.value){sel.value='';render();}});
 </script>
 </body></html>"""
 out = (HTML.replace("__RAS__", json.dumps(ras, ensure_ascii=False))
