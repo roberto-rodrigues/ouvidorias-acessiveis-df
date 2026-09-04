@@ -9,11 +9,15 @@ e das divisões territoriais do DF (shapefiles do InfoSaúde/SES-DF).
 ## Estrutura
 
 ```
-data/raw/        CSV do formulário + shapefiles (RAs, Regiões de Saúde, unidades de saúde)
+data/raw/        CSV do formulário + shapefiles (RS, Macro) + RA.json (base oficial das 33 RAs)
 data/processed/  GeoJSON simplificado e ouvidorias geocodificadas (ouvidorias_geo.csv p/ validação)
 src/             pipeline Python + Leaflet embutido
 docs/            index.html gerado (saída publicável)
 ```
+
+> As Regiões Administrativas usam a base **oficial** (GeoJSON EPSG:4326, 33 RAs atuais
+> com numeração RA I–RA XXXIII) em `data/raw/RA.json`. Regiões de Saúde e Macrorregiões
+> vêm dos shapefiles SES-DF/InfoSaúde em `data/raw/shapefiles`.
 
 ## Pipeline
 

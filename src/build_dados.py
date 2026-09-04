@@ -28,7 +28,9 @@ for _, r in df.iterrows():
                      n_itens=len(r.itens_l), data=r.ts.split(" ")[0]))
 
 g = gpd.GeoDataFrame(rows, geometry=[Point(x["lon"], x["lat"]) for x in rows], crs=4326)
-ras = gpd.read_file("data/raw/shapefiles/Regiões_Administrativas.shp")[["RA", "RS", "geometry"]]
+# Spatial join usa a base oficial de RAs (RA.json) para atribuir cada ouvidoria
+# à Região Administrativa correta.
+ras = gpd.read_file("data/raw/RA.json").rename(columns={"ra": "RA"})[["RA", "geometry"]]
 g = gpd.sjoin(g, ras, how="left", predicate="within").drop(columns="index_right")
 g["RA"] = g.RA.fillna("—")
 g.drop(columns=["lat", "lon"]).to_file("data/processed/ouvidorias.geojson", driver="GeoJSON")
