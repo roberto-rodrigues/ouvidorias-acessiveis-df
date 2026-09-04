@@ -46,4 +46,4 @@ Para corrigir um ponto, edite ali e rode `make dados site`.
 
 ## Créditos
 
-Basemap © CARTO / © OpenStreetMap contributors · Limites territoriais: SES-DF (InfoSaúde) · Leaflet 1.9.4 (BSD-2).
+Basemap © OpenStreetMap contributors · Limites territoriais: base oficial das RAs do DF (RA.json) + SES-DF (InfoSaúde) · Leaflet 1.9.4 (BSD-2).

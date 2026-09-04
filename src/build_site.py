@@ -87,19 +87,20 @@ const RAS = __RAS__;
 const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
 const map = L.map('map',{zoomControl:true}).setView([-15.78,-47.85],10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO, © OpenStreetMap',maxZoom:19}).addTo(map);
-const raLayer = L.geoJSON(RAS,{style:{color:'#334155',weight:1.2,fillColor:'#93c5fd',fillOpacity:.08},
-  onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true});
-    l.on('mouseover',()=>l.setStyle({fillOpacity:.25}));l.on('mouseout',()=>l.setStyle({fillOpacity:.08}));
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
+const RA_COLS=["#60a5fa","#34d399","#fbbf24","#f472b6","#a78bfa","#fb923c","#2dd4bf","#f87171","#a3e635","#38bdf8","#facc15","#4ade80","#c084fc","#fda4af","#93c5fd","#86efac","#fdba74","#fcd34d","#67e8f9","#d8b4fe","#bef264","#f9a8d4","#7dd3fc","#6ee7b7","#fecaca","#c4b5fd","#a5f3fc","#fde68a","#bbf7d0","#fed7aa","#e9d5ff","#bae6fd","#fecdd3"];
+const raLayer = L.geoJSON(RAS,{style:(f)=>{const i=RAS.features.indexOf(f);return {color:'#1f2937',weight:1.2,fillColor:RA_COLS[i%RA_COLS.length],fillOpacity:.22};},
+  onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true,opacity:.95});
+    l.on('mouseover',()=>l.setStyle({fillOpacity:.45,weight:1.8}));l.on('mouseout',()=>l.setStyle({fillOpacity:.22,weight:1.2}));
     l.on('click',()=>{sel.value=f.properties.RA;render()})}}).addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
- d.innerHTML='<i style="background:#15803d"></i>Atende em Libras presencialmente<br><i style="background:#2563eb"></i>Sem Libras presencial<br><small>Tamanho do ponto = nº de itens de acessibilidade</small><br><span style="border:1.5px solid #334155;display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:middle"></span>Regiões Administrativas';return d};legend.addTo(map);
+ d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><small>Ponto maior = mais itens de acessibilidade</small><hr style="margin:7px 0;border:none;border-top:1px solid #e5e7eb"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #1f2937;background:#93c5fd;vertical-align:middle;margin-right:6px"></span>33 RAs (base oficial)<br><small>Clique numa RA para filtrar a lista</small>';return d};legend.addTo(map);
 const sel=document.getElementById('ra');
 [...new Set(RAS.features.map(f=>f.properties.RA))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
 const chips=document.getElementById('chips');const active=new Set();
 REC.forEach(r=>{const b=document.createElement('button');b.className='chip';b.textContent=sh(r);b.setAttribute('aria-pressed','false');
  b.onclick=()=>{active.has(r)?active.delete(r):active.add(r);b.setAttribute('aria-pressed',active.has(r));render()};chips.appendChild(b)});
-const col=p=>p.libras==='Sim'?'#15803d':'#2563eb';
+const col=p=>p.libras==='Sim'?'#16a34a':'#3b82f6';
 const markers=L.layerGroup().addTo(map);let cur=null;
 function popup(p,y,x){return `<div class="popup"><b>${p.nome}</b><br><small>${p.orgao}</small><br><small>${p.endereco} · RA ${p.RA}</small><br>
  <span class="badge ${p.libras==='Sim'?'b-lib':'b-nolib'}">${p.libras==='Sim'?'Libras presencial':'Sem Libras presencial'}</span>${p.fonte==='aprox'?'<span class="badge b-aprox">localização aproximada</span>':''}
@@ -111,7 +112,7 @@ function render(){
   return (!q||(p.nome+p.orgao+p.RA+p.sigla).toLowerCase().includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.circleMarker([y,x],{radius:6+p.n_itens*0.8,color:'#fff',weight:2,fillColor:col(p),fillOpacity:.95}).bindPopup(popup(p,y,x)).addTo(markers);
+  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);
   const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
   const go=()=>{map.flyTo([y,x],14);m.openPopup();document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
