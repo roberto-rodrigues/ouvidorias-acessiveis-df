@@ -64,6 +64,17 @@ Regras aplicadas no pipeline:
 - `data/processed/coordenadas_validadas_import_report.json` — o que o CSV validado casou na base
   e a lista de registros que continuam sem coordenada validada.
 
+## Fundo do mapa
+
+- **Zoom < 13 (visão geral):** fundo estilizado desenhado em CSS (teal + pontilhado) com as RAs em
+  cinza-azulado — mantém o visual do painel e destaca os agrupamentos.
+- **Zoom ≥ 13 (detalhe):** entra o **basemap do OpenStreetMap** (ruas, quadras, prédios e pontos de
+  interesse como UBS, escolas, estádios) e a opacidade das RAs cai para ~10% para não esconder o mapa.
+  Ao voltar para a visão geral, os tiles saem e o fundo estilizado retorna.
+- O crédito `© OpenStreetMap contributors` é exibido no canto inferior direito (controle de atribuição
+  do Leaflet) sempre que os tiles estão visíveis.
+- A legenda é recolhível pelo título ("Legenda") e começa recolhida no mobile.
+
 ## Marcadores
 
 Os marcadores são **agrupados** (Leaflet.markercluster) com raio de 45 px: no mapa completo aparece um

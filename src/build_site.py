@@ -52,10 +52,11 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 .ic span{font-size:.7rem;background:#e8f2f5;color:#17445d;padding:2px 6px;border-radius:6px}
 #map{height:100%;background:radial-gradient(circle at 2px 2px,rgba(255,255,255,.86) 1.4px,transparent 1.6px) 0 58%/32px 32px no-repeat,radial-gradient(circle at 2px 2px,rgba(255,255,255,.78) 1.4px,transparent 1.6px) 100% 2%/32px 32px no-repeat,linear-gradient(180deg,var(--map-bg),var(--map-bg2));position:relative;overflow:hidden}
 #map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}.leaflet-tooltip.ra-focus-label{background:rgba(255,255,255,.88);color:#17344f;border:1px solid rgba(220,232,238,.9);border-radius:999px;box-shadow:0 2px 8px rgba(11,28,43,.16);font-weight:700;font-size:.82rem;letter-spacing:.02em;padding:4px 9px}.leaflet-tooltip.ra-focus-label:before{display:none}.mc-icon{background:#17344f;border:2.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;line-height:1;box-shadow:0 2px 9px rgba(11,28,43,.4);cursor:pointer}.mc-icon span{font-size:.76rem;letter-spacing:-.02em}.mc-icon:hover{background:#235f77}.pino svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 3px rgba(11,28,43,.35));transform-origin:50% 100%;transition:transform .12s}.pino:hover svg{transform:scale(1.12)}
+.leaflet-control-attribution{background:rgba(255,255,255,.88);color:#17344f;font-size:.68rem;padding:2px 6px;border-radius:6px 0 0 0}.leaflet-control-attribution a{color:#17344f}#map.detalhe{background:#eef2f4}#map.detalhe .leaflet-tile{transition:opacity .2s linear}
 .count{font-size:.8rem;color:var(--muted)}
 .popup b{color:var(--azul)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.85rem}
-.legend{background:rgba(255,255,255,.94);padding:8px 10px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.18);border:1px solid rgba(215,225,232,.9)}
+.legend{background:rgba(255,255,255,.94);padding:6px 10px 8px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.18);border:1px solid rgba(215,225,232,.9)}.legend h4{margin:0 0 2px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:#17344f;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:space-between}.legend h4 span{font-size:.7rem}.legend.recolhida .lg-body{display:none}.legend.recolhida h4{margin:0}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}.reset-map{background:#fff;border:0;border-radius:8px;padding:8px 10px;font-weight:800;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.reset-map:hover{background:#eef6f9}
 @media(max-width:800px){header{padding:10px 12px;gap:8px;flex-wrap:wrap}header h1{font-size:1rem}header .tag{margin-left:0;font-size:.68rem}.layout{grid-template-columns:1fr;grid-template-rows:auto minmax(56vh,1fr);height:auto;min-height:calc(100vh - 54px)}aside{max-height:42vh;border-right:0;border-bottom:1px solid var(--b);padding:12px}#map{height:58vh}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.leaflet-tooltip.ra-label{font-size:.82rem;padding:4px 6px}}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.kpis div{background:#eef6f9;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
@@ -92,9 +93,10 @@ const RAS = __RAS__;
 const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
 const INITIAL_CENTER=[-15.78,-47.85],INITIAL_ZOOM=10;
-const map = L.map('map',{zoomControl:true,attributionControl:false,minZoom:9,maxZoom:18}).setView(INITIAL_CENTER,INITIAL_ZOOM);
+const map = L.map('map',{zoomControl:true,attributionControl:true,minZoom:9,maxZoom:18}).setView(INITIAL_CENTER,INITIAL_ZOOM);
+const Z_DETALHE=13; // a partir daqui entra o fundo detalhado (ruas, prédios, POIs)
 let selectedRA='';
-function estiloRA(f,hover=false){const selected=f.properties.RA===selectedRA;return {color:selected?'#ffffff':'#c7d8df',weight:selected?2.8:(hover?2.1:1.45),fillColor:selected?'#5f7882':'#789099',fillOpacity:selected?.96:(hover?.9:.82),opacity:.98};}
+function estiloRA(f,hover=false){const det=map.getZoom()>=Z_DETALHE;const selected=f.properties.RA===selectedRA;const base=det?.10:.82;return {color:selected?(det?'#17344f':'#ffffff'):(det?'#8aa0aa':'#c7d8df'),weight:selected?2.8:(hover?2.1:(det?1.3:1.45)),fillColor:selected?'#5f7882':'#789099',fillOpacity:selected?(det?.25:.96):(hover?base+.08:base),opacity:det?.85:.98};}
 const raLayer = L.geoJSON(RAS,{style:(f)=>estiloRA(f),
   onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true,opacity:.95});
     l.on('mouseover',()=>l.setStyle(estiloRA(f,true)));l.on('mouseout',()=>l.setStyle(estiloRA(f,false)));
@@ -104,6 +106,14 @@ map.fitBounds(raLayer.getBounds(),{padding:fullPadding()});
 const raNameLayer=L.layerGroup().addTo(map);
 function getRALayer(ra){return raLayer.getLayers().find(l=>l.feature.properties.RA===ra)}
 function updateRAStyles(){raLayer.eachLayer(l=>l.setStyle(estiloRA(l.feature)))}
+// Fundo detalhado do OpenStreetMap (ruas, prédios, pontos de interesse) a partir do zoom de detalhe.
+const osmFundo=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'osm-tiles',attribution:'© OpenStreetMap contributors'});
+function atualizarFundo(){const det=map.getZoom()>=Z_DETALHE;
+ if(det&&!map.hasLayer(osmFundo)){osmFundo.setOpacity(0);osmFundo.addTo(map);setTimeout(()=>osmFundo.setOpacity(1),60)}
+ else if(!det&&map.hasLayer(osmFundo)){map.removeLayer(osmFundo)}
+ document.getElementById('map').classList.toggle('detalhe',det);
+ updateRAStyles()}
+map.on('zoomend',atualizarFundo);
 function showRAName(ra){raNameLayer.clearLayers();if(!ra)return;const l=getRALayer(ra);if(!l)return;L.tooltip({permanent:true,direction:'center',className:'ra-focus-label',opacity:1,interactive:false}).setContent(ra).setLatLng(l.getBounds().getCenter()).addTo(raNameLayer)}
 function destacarRA(ra){selectedRA=ra||'';updateRAStyles();showRAName(selectedRA)}
 function focusRA(ra,animate=true){destacarRA(ra);const l=getRALayer(selectedRA);if(l)map.fitBounds(l.getBounds(),{padding:[70,70],animate})}
@@ -115,7 +125,12 @@ function mostrarOuvidoria(m,y,x){if(markers.getVisibleParent(m)===m){m.openPopup
 function resetMapa(){selectedRA='';raNameLayer.clearLayers();sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();updateRAStyles();map.fitBounds(raLayer.getBounds(),{padding:fullPadding(),animate:true});}
 const resetControl=L.control({position:'topright'});resetControl.onAdd=()=>{const b=L.DomUtil.create('button','reset-map');b.type='button';b.title='Voltar ao mapa completo';b.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b);b.onclick=resetMapa;return b};resetControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
- d.innerHTML='<b>Marcadores</b><br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#16a34a" stroke="#fff" stroke-width="3"/></svg>Libras presencial<br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#3b82f6" stroke="#fff" stroke-width="3"/></svg>Sem Libras presencial<br><span class="lg-note"><small>Pino maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span>';return d};legend.addTo(map);
+ d.innerHTML='<h4>Legenda <span aria-hidden="true">▾</span></h4><div class="lg-body"><b>Marcadores</b><br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#16a34a" stroke="#fff" stroke-width="3"/></svg>Libras presencial<br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#3b82f6" stroke="#fff" stroke-width="3"/></svg>Sem Libras presencial<br><span class="lg-note"><small>Pino maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br><small>Aproxime (zoom 13+) para ver ruas e prédios</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span></div>';
+ if(window.innerWidth<800){d.classList.add('recolhida')}
+ const h=d.querySelector('h4');L.DomEvent.disableClickPropagation(h);
+ const caret=()=>{const s=h.querySelector('span');if(s)s.textContent=d.classList.contains('recolhida')?'▸':'▾'};
+ caret();h.onclick=()=>{d.classList.toggle('recolhida');caret()};
+ return d};legend.addTo(map);
 const sel=document.getElementById('ra');
 [...new Set(RAS.features.map(f=>f.properties.RA))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
 const chips=document.getElementById('chips');const active=new Set();
@@ -146,8 +161,9 @@ function render(){
  if(ra){focusRA(ra)}else if(selectedRA){updateRAStyles();showRAName(selectedRA)}
 }
 document.getElementById('q').oninput=render;sel.onchange=render;render();
-function ajustarTamanhoMapa(){map.invalidateSize();if(!sel.value)map.fitBounds(raLayer.getBounds(),{padding:fullPadding()});}
+function ajustarTamanhoMapa(){map.invalidateSize();if(!sel.value)map.fitBounds(raLayer.getBounds(),{padding:fullPadding()});atualizarFundo();}
 setTimeout(ajustarTamanhoMapa,150);window.addEventListener('resize',()=>setTimeout(ajustarTamanhoMapa,150));
+atualizarFundo();
 // Clicar fora das regiões/marcadores (área vazia do mapa) volta à visão inicial.
 map.on('click',resetMapa);
 </script>
