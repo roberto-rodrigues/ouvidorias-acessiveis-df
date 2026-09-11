@@ -1,24 +1,62 @@
-SIGLA,Orgao,Latitude,Longitude,Tipo_acesso
-SEL,Secretaria de Estado de Esporte e Lazer,-15.7874753,-47.878744,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-CAESB,Companhia de Saneamento Ambiental do DF (CAESB),-15.84560132,-48.03435696,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SSP,Secretaria de Estado da Segurança Pública,-15.78084722,-47.90877412,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-CEASA,Centrais de Abastecimento do Distrito Federal (CEASA),-15.79132019,-47.94889771,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SEMOB,Secretaria de Estado de Transporte e Mobilidade,-15.77388876,-47.94153879,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso tátil, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-DFLEGAL,Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal,-15.8008515,-47.96545199,"Rampa de acesso, Corrimão nas escadas, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-CGDF,Controladoria-Geral do Distrito Federal,-15.78346872,-47.90855532,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SESDF,Secretaria de Estado de Saúde,-15.78236303,-47.89015563,"Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SEJUS,Secretaria de Estado de Justiça e Cidadania do Distrito Federal,-15.77589322,-47.9406708,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-JUCIS,"Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)",-15.78799563,-47.88389821,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SODF,Secretaria de Estado de Obras e Infraestrutura,-15.81566544,-47.95434351,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-RA-PLAN,Administração Regional de Planaltina,-15.6173003,-47.6514018,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SEEC,Secretaria de Estado de Economia,-15.78397476,-47.89034031,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-SEAPE,Secretaria de Estado de Administração Penitenciária,-15.80049189,-47.88336233,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Banheiro adaptado"
-PGDF,Procuradoria-Geral do Distrito Federal (PGDF),-15.7825887,-47.90656396,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-TERRACP,Companhia Imobiliária de Brasília (TERRACAP),-15.81334902,-47.90695139,"Estacionamento com vaga reservada para PCD, Banheiro adaptado"
-RA-CEIL,Administração Regional da Ceilândia,-15.82261711,-48.101036,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-DETRAN,Departamento de Trânsito do DF (DETRAN),-15.78002194,-47.9089311,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
-FHB,Fundação Hemocentro de Brasília (FHB),-15.78496035,-47.88612457,"Rampa de acesso, Estacionamento com vaga reservada para PCD, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade"
+SIGLA,Orgao,Latitude,Longitude,Endereco
+RA-CEIL,Administração Regional da Ceilândia,-15.82261711,-48.101036,
 RA-SANT,Administração Regional da Santa Maria,-16.01733354,-48.01624365,
+RA Águas Claras,Administração Regional de Águas Claras,-15.8361,-48.0289,"Rua Manacá, Lote 02, Bloco 01, Águas Claras, DF, 71928-180"
+RA Arniqueira,Administração Regional de Arniqueiras,-15.8506,-48.0053,"SHA Conjunto 04 Lote 01, Arniqueira, DF, 71994-540"
+RA-PLAN,Administração Regional de Planaltina,-15.6173003,-47.6514018,
+RA Samambaia,Administração Regional de Samambaia,-15.8778,-48.0858,"Centro Urbano, Quadra 302, Conjunto 13, Lote 01, Samambaia Sul, DF, 72300-655"
+RA São Sebastião,Administração Regional de São Sebastião,-15.9083,-47.7719,"Quadra 101, Área Especial S/N, Bairro Residencial Oeste, São Sebastião, DF, 71691-001"
+RA Guará,Administração Regional do Guará,-15.8228,-47.9806,"SRIA II QE 25, Área Especial do CAVE, Guará II, Brasília - DF, 71025-900"
+RA Lago Sul,Administração Regional do Lago Sul,-15.8403,-47.8767,"SHIS QI 11, Área Especial Nº 01, Lago Sul, Brasília - DF, 71625-600"
+RA Núcleo Bandeirante,Administração Regional do Núcleo Bandeirante,-15.8703,-47.9622,"Praça Central, Área Especial 01, Núcleo Bandeirante, DF, 71705-510"
+RA Plano Piloto,Administração Regional do Plano Piloto,-15.7925,-47.8825,"SBN Quadra 2, Bloco K, Edifício Wagner, Asa Norte, Brasília - DF, 70040-020"
+RA Riacho Fundo,Administração Regional do Riacho Fundo,-15.8814,-48.0169,"AC 03, Lote 01, QN 07, Riacho Fundo I, DF, 71810-300"
+RA Riacho Fundo II,Administração Regional do Riacho Fundo II,-15.8953,-48.0433,"QN 8A, Conjunto 01, Lote 01, Riacho Fundo II, DF, 71882-005"
+RA SCIA/Estrutural,Administração Regional do SCIA,-15.7878,-47.9856,"Setor Central, Área Especial nº 05, Vila Estrutural, SCIA, DF, 71255-000"
+RA SIA,Administração Regional do SIA,-15.8169,-47.9514,"SIA Trecho 5, Lote 10, SIA, Brasília - DF, 71200-050"
+RA Sol Nascente/  Pôr do Sol,Administração Regional do Sol Nascente/Pôr do Sol,-15.8206,-48.125,"Trecho 02, Quadra 202, Conjunto A, Lote 01, Sol Nascente, Ceilândia - DF, 72280-000"
+RA Sudoeste/ Octogonal,Administração Regional do Sudoeste/Octogonal,-15.8011,-47.9236,"SIG Quadra 06, Lote 1485, Sudoeste/Octogonal, Brasília - DF, 70610-460"
+ADASA,Agência Reguladora de Águas e Saneamento do DF (ADASA),-15.8078,-47.9431,"Estação Rodoferroviária, Ala Central, Sobreloja, Setor de Áreas Isoladas Sudoeste - SAISO, Brasília - DF, 70631-900"
+BRB,Banco de Brasília (BRB),-15.7972,-47.8828,"Centro Financeiro BRB, SBS Quadra 1, Bloco E, Edifício Brasília, Plano Piloto, Brasília - DF, 70072-900"
+CC,Casa Civil,-15.7836,-47.9078,"Palácio do Buriti, Praça do Buriti, Zona Cívico-Administrativa, Plano Piloto, Brasília - DF, 70075-900"
+CM,Casa Militar,-15.7836,-47.9078,"Palácio do Buriti, Praça do Buriti, Zona Cívico-Administrativa, Plano Piloto, Brasília - DF, 70075-900"
+CEASA,Centrais de Abastecimento do Distrito Federal (CEASA),-15.79132019,-47.94889771,
+CAESB,Companhia de Saneamento Ambiental do DF (CAESB),-15.84560132,-48.03435696,
+TERRACP,Companhia Imobiliária de Brasília (TERRACAP),-15.81334902,-47.90695139,
+NOVACAP,Companhia Urbanizadora da Nova Capital do Brasil (NOVACAP),-15.8033,-47.9356,"Setor de Áreas Públicas (SAP), Bloco A, Lote 1, SIA, Brasília - DF, 71215-900"
+CGDF,Controladoria-Geral do Distrito Federal,-15.78346872,-47.90855532,
+CBMDF,Corpo de Bombeiros (CBMDF),-15.7801,-47.9158,"QCG - Quartel do Comando Geral, SAM Lote D Módulo E, Plano Piloto, Brasília - DF, 70620-000"
+DPD,Defensoria Pública do DF,-15.8118,-47.9542,"SIA Trecho 17, Rua 7, Lote 45, Guará/SIA, Brasília - DF, 71200-010"
 DER,Departamento de Estrada de Rodagem do DF (DER),-15.77721994,-47.909518,
-SEDES,"Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural",-15.7335695,-47.90597413,
+DETRAN,Departamento de Trânsito do DF (DETRAN),-15.78002194,-47.9089311,
+EMATER,Empresa de Assistência Técnica e Extensão Rural do Distrito Federal (EMATER),-15.7508,-47.9042,"Parque Estação Biológica - AENW, Edifício Sede EMATER-DF, Plano Piloto, Brasília - DF, 70770-915"
+Fepecs,Fundação de Ensino e Pesquisa em Ciências da Saúde (Fepecs),-15.7881,-47.8872,"SMHN Quadra 501, Bloco A, Asa Norte, Plano Piloto, Brasília - DF, 70710-904"
+FHB,Fundação Hemocentro de Brasília (FHB),-15.78496035,-47.88612457,
 INAS,Instituto de Assistência à Saúde dos Servidores do DF (INAS),-15.79478076,-47.89359363,
+PROCON,Instituto de Defesa do Consumidor do DF (PROCON),-15.7975,-47.8889,"SCS Quadra 8, Bloco B-60, Sala 240, Venâncio Shopping, Plano Piloto, Brasília - DF, 70333-900"
+IPREV,Instituto de Previdência dos Servidores do DF (IPREV),-15.7997,-47.8906,"SCS Quadra 9, Bloco A, Edifício Parque Cidade Corporate, Torre B, 2º andar, Plano Piloto, Brasília - DF, 70308-200"
+JBB,Jardim Botânico de Brasília (JBB),-15.8714,-47.8344,"SMDB Conjunto 12, Lago Sul, Brasília - DF, 71680-001"
+JUCIS,"Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)",-15.78799563,-47.88389821,
+PCDF,Polícia Civil (PCDF),-15.8164,-47.9403,"Complexo da Polícia Civil, SPO Lote 23, Conjunto A, Plano Piloto, Brasília - DF, 70610-901"
+PMDF,Polícia Militar (PMDF),-15.8208,-47.9406,"Quartel do Comando Geral (QCG), SPO Área Especial 4, Plano Piloto, Brasília - DF, 70610-200"
+PGDF,Procuradoria-Geral do Distrito Federal (PGDF),-15.7825887,-47.90656396,
+SEDES,"Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural",-15.7335695,-47.90597413,
+SSP,Secretaria de Estado da Segurança Pública,-15.78084722,-47.90877412,
+SEAPE,Secretaria de Estado de Administração Penitenciária,-15.80049189,-47.88336233,
+SEAÀC,Secretaria de Estado de Atendimento à comunidade,-15.7836,-47.9078,"Palácio do Buriti, Anexo, 11º Andar, Praça do Buriti, Plano Piloto, Brasília - DF, 70075-900"
+SECTI,"Secretaria de Estado de Ciência, Tecnologia e Inovação",-15.7997,-47.8906,"SCS Quadra 09, Bloco A, Lote 03, Edifício Parque Cidade Corporate, Torre C, 7º Andar, Plano Piloto, Brasília - DF, 70308-200"
+SEDET,"Secretaria de Estado de Desenvolvimento Econômico, Trabalho e Renda",-15.7969,-47.8864,"SCS Quadra 02, Bloco C, Edifício Serra Dourada, Plano Piloto, Brasília - DF, 70300-902"
+SEDS,Secretaria de Estado de Desenvolvimento Social,-15.7533,-47.8931,"SEPN 515, Bloco A, Edifício OAS, Asa Norte, Plano Piloto, Brasília - DF, 70770-501"
+SEEC,Secretaria de Estado de Economia,-15.78397476,-47.89034031,
+SEE,Secretaria de Estado de Educação,-15.7917,-47.8822,"SBN Quadra 02, Bloco C, Edifício Phenícia, Asa Norte, Plano Piloto, Brasília - DF, 70040-020"
+SEL,Secretaria de Estado de Esporte e Lazer,-15.7874753,-47.878744,
+SEG,Secretaria de Estado de Governo,-15.7836,-47.9078,"Palácio do Buriti, 16º Andar, Praça do Buriti, Plano Piloto, Brasília - DF, 70075-900"
+SEJUS,Secretaria de Estado de Justiça e Cidadania do Distrito Federal,-15.77589322,-47.9406708,
+SEM,Secretaria de Estado de Mulher,-15.7836,-47.9078,"Via S1, Praça do Buriti, Anexo do Palácio do Buriti, 8º Andar, Plano Piloto, Brasília - DF, 70075-900"
+SODF,Secretaria de Estado de Obras e Infraestrutura,-15.81566544,-47.95434351,
+DFLEGAL,Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal,-15.8008515,-47.96545199,
+SESDF,Secretaria de Estado de Saúde,-15.78236303,-47.89015563,
+SEMOB,Secretaria de Estado de Transporte e Mobilidade,-15.77388876,-47.94153879,
+SEMA,Secretaria de Estado do Meio Ambiente,-15.7578,-47.8903,"SEPN 511, Bloco C, Edifício Spazio Brasilia, Asa Norte, Plano Piloto, Brasília - DF, 70750-543"
+SLU,Serviço de Limpeza Urbana do DF (SLU),-15.7975,-47.8889,"SCS Quadra 08, Bloco B-60, Edifício Venâncio Shopping, 3º Andar, Plano Piloto, Brasília - DF, 70333-900"
+UNDF,Universidade do Distrito Federal Prof. Jorge Amaury (UNDF),-15.7369,-47.8864,"CA 02, Lote 02, Edifício Complexo de Ensino Superior, Lago Norte, Brasília - DF, 71503-502"

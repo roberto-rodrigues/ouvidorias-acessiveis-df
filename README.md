@@ -44,8 +44,17 @@ Prioridade de resolução da coordenada de cada ouvidoria:
 
 `src/geo_sedes.py` mantém o dicionário legado de sedes. Para corrigir um ponto,
 o caminho recomendado é acrescentar a linha correspondente em
-`data/raw/ouvidorias_coords_validadas.csv` (colunas `SIGLA;Orgao;Latitude;Longitude;Tipo_acesso`,
-delimitador `;`, decimal vírgula) e rodar `make dados site`.
+`data/raw/ouvidorias_coords_validadas.csv` (colunas `SIGLA,Orgao,Latitude,Longitude,Endereco`).
+Quando a linha não traz `Endereco`, o endereço anterior (do `geo_sedes.py`) é mantido.
+
+Regras aplicadas no pipeline:
+
+- a coordenada **validada** sempre vence as demais fontes;
+- para a SES, a coordenada do órgão só vale quando a unidade está em branco — os hospitais
+  regionais (HRC/HRG/HRPL) continuam vindo do shapefile;
+- a ouvidoria de uma **Administração Regional** fica sempre na RA do próprio nome, mesmo quando o
+  ponto cai em outra RA na base oficial (ex.: RA SIA em trecho limítrofe do Guará, Sol Nascente
+  dentro da poligonal de Ceilândia).
 
 ### Pontos pendentes de validação
 

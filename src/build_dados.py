@@ -27,10 +27,12 @@ def load_validated_coords():
         org = str(r.get("Orgao", "")).strip()
         if not org:
             continue
+        raw_end = r.get("Endereco", "") if "Endereco" in d.columns else ""
+        end = "" if pd.isna(raw_end) else str(raw_end).strip()
         coords[loose(org)] = dict(
             sigla=str(r.get("SIGLA", "")).strip(),
             lat=float(r["Latitude"]), lon=float(r["Longitude"]),
-            end="Coordenada validada pelo arquivo ouvidorias.csv"
+            end=end
         )
     return coords
 
@@ -73,7 +75,7 @@ def ra_from_admin(org):
 def fallback_sede(org, cre=""):
     v = VALIDATED_COORDS.get(loose(org))
     if v:
-        return v.get("sigla") or sigla_de(org), v["lat"], v["lon"], "validado", v["end"]
+        return (v.get("sigla") or sigla_de(org)), v["lat"], v["lon"], "validado", (v["end"] or "Coordenada validada (endereço a confirmar)")
     ra = ra_from_admin(org) or ra_lookup.get(norm(cre))
     sigla = f"RA {ra}" if ra else sigla_de(org)
     if ra and ra in ra_centroid:
@@ -116,7 +118,9 @@ for _, r in df.iterrows():
         sigla, lat, lon, fonte, end = SEDES[r.orgao]
         v = VALIDATED_COORDS.get(loose(r.orgao)) if (pd.isna(r.unidade) or not str(r.unidade).strip()) else None
         if v:
-            lat, lon, fonte, end = v["lat"], v["lon"], "validado", v["end"]
+            lat, lon, fonte = v["lat"], v["lon"], "validado"
+            if v["end"]:
+                end = v["end"]
         nome = f"Ouvidoria – {sigla}"
     else:
         sigla, lat, lon, fonte, end = fallback_sede(r.orgao, r.cre)
@@ -126,13 +130,24 @@ for _, r in df.iterrows():
     if r.capacitado == "Sim": acess.append("Equipe capacitada em acessibilidade")
     rows.append(dict(nome=nome, sigla=sigla, orgao=r.orgao, endereco=end, lat=lat, lon=lon, fonte=fonte,
                      libras=r.libras, selo=r.selo, capacitado=r.capacitado, itens=r.itens_l, acess=acess,
-                     n_itens=len(r.itens_l), data=str(r.ts).split(" ")[0]))
+                     n_itens=len(r.itens_l), data=str(r.ts).split(" ")[0],
+                     ra_declarada=(ra_from_admin(r.orgao) or "")))
 
 g = gpd.GeoDataFrame(rows, geometry=[Point(x["lon"], x["lat"]) for x in rows], crs=4326)
 # Spatial join usa a base oficial de RAs (RA.json) para atribuir cada ouvidoria
 # à Região Administrativa correta.
 g = gpd.sjoin(g, ras, how="left", predicate="within").drop(columns="index_right")
+g["RA_derivada"] = g["RA"]
+# A ouvidoria de uma Administração Regional pertence à RA do próprio nome, mesmo quando o
+# ponto cai em outra RA na base oficial (ex.: RA SIA em trecho limítrofe do Guará).
+mask = g["ra_declarada"].fillna("").ne("")
+g.loc[mask, "RA"] = g.loc[mask, "ra_declarada"]
+ajustadas = g[mask & (g["RA_derivada"].fillna("") != g["RA"])]
+if len(ajustadas):
+    print("RA ajustada para administração regional:")
+    print(ajustadas[["sigla", "RA_derivada", "RA"]].to_string(index=False))
 g["RA"] = g.RA.fillna("—")
+g = g.drop(columns=["ra_declarada", "RA_derivada"])
 g.drop(columns=["lat", "lon"]).to_file("data/processed/ouvidorias.geojson", driver="GeoJSON")
 g.drop(columns="geometry").assign(lat=g.geometry.y, lon=g.geometry.x).to_csv("data/processed/ouvidorias_geo.csv", index=False)
 print(g[["sigla", "RA", "fonte", "n_itens", "libras"]].to_string())
