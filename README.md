@@ -34,9 +34,26 @@ make          # base -> dados -> site
 
 ## Coordenadas das sedes
 
-`src/geo_sedes.py` guarda lat/lon de cada órgão com a coluna `fonte`:
-`osm` (Nominatim/OpenStreetMap), `aprox` (estimativa — **validar**), `shp` (shapefile SES-DF).
-Para corrigir um ponto, edite ali e rode `make dados site`.
+Prioridade de resolução da coordenada de cada ouvidoria:
+
+1. **`validado`** — `data/raw/ouvidorias_coords_validadas.csv` (lat/lon conferidos manualmente pela equipe).
+   Tem precedência sobre tudo; é a fonte confiável.
+2. **`shp`** — shapefile SES-DF/InfoSaúde (hospitais regionais).
+3. **`osm`** — Nominatim/OpenStreetMap (conferir antes de publicar).
+4. **`aprox`** — estimativa pela RA/sede — **validar**.
+
+`src/geo_sedes.py` mantém o dicionário legado de sedes. Para corrigir um ponto,
+o caminho recomendado é acrescentar a linha correspondente em
+`data/raw/ouvidorias_coords_validadas.csv` (colunas `SIGLA;Orgao;Latitude;Longitude;Tipo_acesso`,
+delimitador `;`, decimal vírgula) e rodar `make dados site`.
+
+### Pontos pendentes de validação
+
+- `data/processed/pontos_aproximados_validacao.csv` — candidatos do OpenStreetMap para os pontos `aprox`
+  (revisar antes de aplicar; campo `confianca` e `acao_recomendada`).
+- `data/processed/pontos_aproximados_validacao_resumo.json` — contagem por confiança.
+- `data/processed/coordenadas_validadas_import_report.json` — o que o CSV validado casou na base
+  e a lista de registros que continuam sem coordenada validada.
 
 ## Atualizar com novas respostas
 

@@ -1,0 +1,428 @@
+{
+  "validated_rows_imported": 23,
+  "matched_to_current_base": 23,
+  "unmatched_validated_rows": [],
+  "matched_examples": [
+    {
+      "SIGLA": "SEL",
+      "Orgao": "Secretaria de Estado de Esporte e Lazer",
+      "Latitude": -15.7874753,
+      "Longitude": -47.878744,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Esporte e Lazer"
+    },
+    {
+      "SIGLA": "CAESB",
+      "Orgao": "Companhia de Saneamento Ambiental do DF (CAESB)",
+      "Latitude": -15.84560132,
+      "Longitude": -48.03435696,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Companhia de Saneamento Ambiental do DF (CAESB)"
+    },
+    {
+      "SIGLA": "SSP",
+      "Orgao": "Secretaria de Estado da Segurança Pública",
+      "Latitude": -15.78084722,
+      "Longitude": -47.90877412,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado da Segurança Pública"
+    },
+    {
+      "SIGLA": "CEASA",
+      "Orgao": "Centrais de Abastecimento do Distrito Federal (CEASA)",
+      "Latitude": -15.79132019,
+      "Longitude": -47.94889771,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Centrais de Abastecimento do Distrito Federal (CEASA)"
+    },
+    {
+      "SIGLA": "SEMOB",
+      "Orgao": "Secretaria de Estado de Transporte e Mobilidade",
+      "Latitude": -15.77388876,
+      "Longitude": -47.94153879,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso tátil, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Transporte e Mobilidade"
+    },
+    {
+      "SIGLA": "DFLEGAL",
+      "Orgao": "Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal",
+      "Latitude": -15.8008515,
+      "Longitude": -47.96545199,
+      "Tipo_acesso": "Rampa de acesso, Corrimão nas escadas, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal"
+    },
+    {
+      "SIGLA": "CGDF",
+      "Orgao": "Controladoria-Geral do Distrito Federal",
+      "Latitude": -15.78346872,
+      "Longitude": -47.90855532,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Controladoria-Geral do Distrito Federal"
+    },
+    {
+      "SIGLA": "SESDF",
+      "Orgao": "Secretaria de Estado de Saúde",
+      "Latitude": -15.78236303,
+      "Longitude": -47.89015563,
+      "Tipo_acesso": "Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Saúde"
+    },
+    {
+      "SIGLA": "SEJUS",
+      "Orgao": "Secretaria de Estado de Justiça e Cidadania do Distrito Federal",
+      "Latitude": -15.77589322,
+      "Longitude": -47.9406708,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Justiça e Cidadania"
+    },
+    {
+      "SIGLA": "JUCIS",
+      "Orgao": "Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)",
+      "Latitude": -15.78799563,
+      "Longitude": -47.88389821,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)"
+    },
+    {
+      "SIGLA": "SODF",
+      "Orgao": "Secretaria de Estado de Obras e Infraestrutura",
+      "Latitude": -15.81566544,
+      "Longitude": -47.95434351,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Obras e Infraestrutura"
+    },
+    {
+      "SIGLA": "RA-PLAN",
+      "Orgao": "Administração Regional de Planaltina",
+      "Latitude": -15.6173003,
+      "Longitude": -47.6514018,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Administração Regional de Planaltina"
+    },
+    {
+      "SIGLA": "SEEC",
+      "Orgao": "Secretaria de Estado de Economia",
+      "Latitude": -15.78397476,
+      "Longitude": -47.89034031,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Piso tátil, Piso antiderrapante, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Secretaria de Estado de Economia"
+    },
+    {
+      "SIGLA": "SEAPE",
+      "Orgao": "Secretaria de Estado de Administração Penitenciária",
+      "Latitude": -15.80049189,
+      "Longitude": -47.88336233,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Banheiro adaptado",
+      "orgao_base": "Secretaria de Estado de Administração Penitenciária"
+    },
+    {
+      "SIGLA": "PGDF",
+      "Orgao": "Procuradoria-Geral do Distrito Federal (PGDF)",
+      "Latitude": -15.7825887,
+      "Longitude": -47.90656396,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão na rampa de acesso, Corrimão nas escadas, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Procuradoria-Geral do Distrito Federal (PGDF)"
+    },
+    {
+      "SIGLA": "TERRACP",
+      "Orgao": "Companhia Imobiliária de Brasília (TERRACAP)",
+      "Latitude": -15.81334902,
+      "Longitude": -47.90695139,
+      "Tipo_acesso": "Estacionamento com vaga reservada para PCD, Banheiro adaptado",
+      "orgao_base": "Companhia Imobiliária de Brasília (TERRACAP)"
+    },
+    {
+      "SIGLA": "RA-CEIL",
+      "Orgao": "Administração Regional da Ceilândia",
+      "Latitude": -15.82261711,
+      "Longitude": -48.101036,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Banheiro adaptado, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Administração Regional da Ceilândia"
+    },
+    {
+      "SIGLA": "DETRAN",
+      "Orgao": "Departamento de Trânsito do DF (DETRAN)",
+      "Latitude": -15.78002194,
+      "Longitude": -47.9089311,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Corrimão nas escadas, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Departamento de Trânsito do DF (DETRAN)"
+    },
+    {
+      "SIGLA": "FHB",
+      "Orgao": "Fundação Hemocentro de Brasília (FHB)",
+      "Latitude": -15.78496035,
+      "Longitude": -47.88612457,
+      "Tipo_acesso": "Rampa de acesso, Estacionamento com vaga reservada para PCD, Sala da ouvidoria em conformidade com os padrões e normas de acessibilidade",
+      "orgao_base": "Fundação Hemocentro de Brasília (FHB)"
+    },
+    {
+      "SIGLA": "RA-SANT",
+      "Orgao": "Administração Regional da Santa Maria",
+      "Latitude": -16.01733354,
+      "Longitude": -48.01624365,
+      "Tipo_acesso": "",
+      "orgao_base": "Administração Regional da Santa Maria"
+    },
+    {
+      "SIGLA": "DER",
+      "Orgao": "Departamento de Estrada de Rodagem do DF (DER)",
+      "Latitude": -15.77721994,
+      "Longitude": -47.909518,
+      "Tipo_acesso": "",
+      "orgao_base": "Departamento de Estrada de Rodagem do DF (DER)"
+    },
+    {
+      "SIGLA": "SEDES",
+      "Orgao": "Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural",
+      "Latitude": -15.7335695,
+      "Longitude": -47.90597413,
+      "Tipo_acesso": "",
+      "orgao_base": "Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural"
+    },
+    {
+      "SIGLA": "INAS",
+      "Orgao": "Instituto de Assistência à Saúde dos Servidores do DF (INAS)",
+      "Latitude": -15.79478076,
+      "Longitude": -47.89359363,
+      "Tipo_acesso": "",
+      "orgao_base": "Instituto de Assistência à Saúde dos Servidores do DF (INAS)"
+    }
+  ],
+  "approx_not_covered_by_validated_csv_count": 39,
+  "approx_not_covered_examples": [
+    {
+      "sigla": "ARÁQ",
+      "orgao": "Administração Regional de Água Quente",
+      "unidade": "Ouvidoria – ARÁQ",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "RA Águas Claras",
+      "orgao": "Administração Regional de Águas Claras",
+      "unidade": "Ouvidoria – RA Águas Claras",
+      "RA": "Águas Claras"
+    },
+    {
+      "sigla": "RA Arniqueira",
+      "orgao": "Administração Regional de Arniqueiras",
+      "unidade": "Ouvidoria – RA Arniqueira",
+      "RA": "Arniqueira"
+    },
+    {
+      "sigla": "RA Samambaia",
+      "orgao": "Administração Regional de Samambaia",
+      "unidade": "Ouvidoria – RA Samambaia",
+      "RA": "Samambaia"
+    },
+    {
+      "sigla": "RA São Sebastião",
+      "orgao": "Administração Regional de São Sebastião",
+      "unidade": "Ouvidoria – RA São Sebastião",
+      "RA": "São Sebastião"
+    },
+    {
+      "sigla": "RA Guará",
+      "orgao": "Administração Regional do Guará",
+      "unidade": "Ouvidoria – RA Guará",
+      "RA": "Guará"
+    },
+    {
+      "sigla": "RA Lago Sul",
+      "orgao": "Administração Regional do Lago Sul",
+      "unidade": "Ouvidoria – RA Lago Sul",
+      "RA": "Lago Sul"
+    },
+    {
+      "sigla": "RA Núcleo Bandeirante",
+      "orgao": "Administração Regional do Núcleo Bandeirante",
+      "unidade": "Ouvidoria – RA Núcleo Bandeirante",
+      "RA": "Núcleo Bandeirante"
+    },
+    {
+      "sigla": "RA Plano Piloto",
+      "orgao": "Administração Regional do Plano Piloto",
+      "unidade": "Ouvidoria – RA Plano Piloto",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "RA Riacho Fundo",
+      "orgao": "Administração Regional do Riacho Fundo",
+      "unidade": "Ouvidoria – RA Riacho Fundo",
+      "RA": "Riacho Fundo"
+    },
+    {
+      "sigla": "RA Riacho Fundo II",
+      "orgao": "Administração Regional do Riacho Fundo II",
+      "unidade": "Ouvidoria – RA Riacho Fundo II",
+      "RA": "Riacho Fundo II"
+    },
+    {
+      "sigla": "RA SCIA/Estrutural",
+      "orgao": "Administração Regional do SCIA",
+      "unidade": "Ouvidoria – RA SCIA/Estrutural",
+      "RA": "SCIA"
+    },
+    {
+      "sigla": "RA SIA",
+      "orgao": "Administração Regional do SIA",
+      "unidade": "Ouvidoria – RA SIA",
+      "RA": "SIA"
+    },
+    {
+      "sigla": "RA Sol Nascente/  Pôr do Sol",
+      "orgao": "Administração Regional do Sol Nascente/Pôr do Sol",
+      "unidade": "Ouvidoria – RA Sol Nascente/  Pôr do Sol",
+      "RA": "Sol Nascente/  Pôr do Sol"
+    },
+    {
+      "sigla": "RA Sudoeste/ Octogonal",
+      "orgao": "Administração Regional do Sudoeste/Octogonal",
+      "unidade": "Ouvidoria – RA Sudoeste/ Octogonal",
+      "RA": "Sudoeste/ Octogonal"
+    },
+    {
+      "sigla": "ADASA",
+      "orgao": "Agência Reguladora de Águas e Saneamento do DF (ADASA)",
+      "unidade": "Ouvidoria – ADASA",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "BRB",
+      "orgao": "Banco de Brasília (BRB)",
+      "unidade": "Ouvidoria – BRB",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "CC",
+      "orgao": "Casa Civil",
+      "unidade": "Ouvidoria – CC",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "CM",
+      "orgao": "Casa Militar",
+      "unidade": "Ouvidoria – CM",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "NOVACAP",
+      "orgao": "Companhia Urbanizadora da Nova Capital do Brasil (NOVACAP)",
+      "unidade": "Ouvidoria – NOVACAP",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "CBMDF",
+      "orgao": "Corpo de Bombeiros (CBMDF)",
+      "unidade": "Ouvidoria – CBMDF",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "DPD",
+      "orgao": "Defensoria Pública do DF",
+      "unidade": "Ouvidoria – DPD",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "EMATER",
+      "orgao": "Empresa de Assistência Técnica e Extensão Rural do Distrito Federal (EMATER)",
+      "unidade": "Ouvidoria – EMATER",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "Fepecs",
+      "orgao": "Fundação de Ensino e Pesquisa em Ciências da Saúde (Fepecs)",
+      "unidade": "Ouvidoria – Fepecs",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "PROCON",
+      "orgao": "Instituto de Defesa do Consumidor do DF (PROCON)",
+      "unidade": "Ouvidoria – PROCON",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "IPREV",
+      "orgao": "Instituto de Previdência dos Servidores do DF (IPREV)",
+      "unidade": "Ouvidoria – IPREV",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "JBB",
+      "orgao": "Jardim Botânico de Brasília (JBB)",
+      "unidade": "Ouvidoria – JBB",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "PCDF",
+      "orgao": "Polícia Civil (PCDF)",
+      "unidade": "Ouvidoria – PCDF",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "PMDF",
+      "orgao": "Polícia Militar (PMDF)",
+      "unidade": "Ouvidoria – PMDF",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEAÀC",
+      "orgao": "Secretaria de Estado de Atendimento à comunidade",
+      "unidade": "Ouvidoria – SEAÀC",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SECTI",
+      "orgao": "Secretaria de Estado de Ciência, Tecnologia e Inovação",
+      "unidade": "Ouvidoria – SECTI",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEDET",
+      "orgao": "Secretaria de Estado de Desenvolvimento Econômico, Trabalho e Renda",
+      "unidade": "Ouvidoria – SEDET",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEDS",
+      "orgao": "Secretaria de Estado de Desenvolvimento Social",
+      "unidade": "Ouvidoria – SEDS",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEE",
+      "orgao": "Secretaria de Estado de Educação",
+      "unidade": "Ouvidoria – SEE",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEG",
+      "orgao": "Secretaria de Estado de Governo",
+      "unidade": "Ouvidoria – SEG",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEM",
+      "orgao": "Secretaria de Estado de Mulher",
+      "unidade": "Ouvidoria – SEM",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SEMA",
+      "orgao": "Secretaria de Estado do Meio Ambiente",
+      "unidade": "Ouvidoria – SEMA",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "SLU",
+      "orgao": "Serviço de Limpeza Urbana do DF (SLU)",
+      "unidade": "Ouvidoria – SLU",
+      "RA": "Plano Piloto"
+    },
+    {
+      "sigla": "UNDF",
+      "orgao": "Universidade do Distrito Federal Prof. Jorge Amaury (UNDF)",
+      "unidade": "Ouvidoria – UNDF",
+      "RA": "Plano Piloto"
+    }
+  ]
+}

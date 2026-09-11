@@ -12,7 +12,29 @@ def norm(s):
     return re.sub(r"\s+", " ", s).strip()
 
 def loose(s):
-    return re.sub(r"[^a-z0-9]+", "", norm(s))
+    s=norm(s)
+    s=s.replace(" do distrito federal", "").replace(" df", "")
+    return re.sub(r"[^a-z0-9]+", "", s)
+
+def load_validated_coords():
+    path = "data/raw/ouvidorias_coords_validadas.csv"
+    try:
+        d = pd.read_csv(path)
+    except FileNotFoundError:
+        return {}
+    coords = {}
+    for _, r in d.iterrows():
+        org = str(r.get("Orgao", "")).strip()
+        if not org:
+            continue
+        coords[loose(org)] = dict(
+            sigla=str(r.get("SIGLA", "")).strip(),
+            lat=float(r["Latitude"]), lon=float(r["Longitude"]),
+            end="Coordenada validada pelo arquivo ouvidorias.csv"
+        )
+    return coords
+
+VALIDATED_COORDS = load_validated_coords()
 
 def sigla_de(org):
     m = re.search(r"\(([^)]+)\)", str(org))
@@ -49,6 +71,9 @@ def ra_from_admin(org):
     return ra_lookup.get(n) or ra_lookup_loose.get(loose(n))
 
 def fallback_sede(org, cre=""):
+    v = VALIDATED_COORDS.get(loose(org))
+    if v:
+        return v.get("sigla") or sigla_de(org), v["lat"], v["lon"], "validado", v["end"]
     ra = ra_from_admin(org) or ra_lookup.get(norm(cre))
     sigla = f"RA {ra}" if ra else sigla_de(org)
     if ra and ra in ra_centroid:
@@ -89,6 +114,9 @@ for _, r in df.iterrows():
         sigla, lat, lon, fonte, end, nome = hs
     elif r.orgao in SEDES:
         sigla, lat, lon, fonte, end = SEDES[r.orgao]
+        v = VALIDATED_COORDS.get(loose(r.orgao)) if (pd.isna(r.unidade) or not str(r.unidade).strip()) else None
+        if v:
+            lat, lon, fonte, end = v["lat"], v["lon"], "validado", v["end"]
         nome = f"Ouvidoria – {sigla}"
     else:
         sigla, lat, lon, fonte, end = fallback_sede(r.orgao, r.cre)
