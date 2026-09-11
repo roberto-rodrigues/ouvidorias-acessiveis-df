@@ -85,8 +85,9 @@ Regras aplicadas no pipeline:
 Os marcadores são **agrupados** (Leaflet.markercluster) com raio de 45 px: no mapa completo aparece um
 círculo azul-escuro com a contagem de ouvidorias; clicar no agrupamento aproxima e separa os pontos.
 A partir do zoom 15 o agrupamento é desativado e cada ouvidoria aparece individualmente.
-Clicar num marcador ou num cartão da lista destaca a Região Administrativa e mostra o nome dela;
-se o ponto ainda estiver dentro de um agrupamento, o mapa aproxima até exibi-lo.
+- Clicar num marcador ou num cartão da lista destaca a Região Administrativa, **aproxima até o zoom 16
+  (nível de rua/prédio, com o basemap detalhado)** e abre o popup da ouvidoria — inclusive para pontos
+  isolados ou em dupla, que antes só abriam o popup sem aproximar.
 
 ## Atualizar com novas respostas
 
