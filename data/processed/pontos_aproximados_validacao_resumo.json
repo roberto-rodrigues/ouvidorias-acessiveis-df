@@ -1,0 +1,9 @@
+{
+  "total_aproximados": 47,
+  "candidatos_osm_media_confianca": 8,
+  "baixa_confianca_revisao_manual": 39,
+  "por_acao": {
+    "manter_aprox_para_revisao_manual": 39,
+    "candidato_osm_revisar_antes_de_aplicar": 8
+  }
+}
