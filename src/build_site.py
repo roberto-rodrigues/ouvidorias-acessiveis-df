@@ -67,7 +67,7 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 <header>
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="9" r="3"/><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>
   <h1>Ouvidorias Acessíveis do Distrito Federal</h1>
-  <span class="tag">Selo Acessibilidade 2024 · __N__ ouvidorias</span>
+  <span class="tag">Selo Acessibilidade 2024/2025 · __N__ ouvidorias</span>
 </header>
 <div class="layout">
 <aside aria-label="Filtros e lista">

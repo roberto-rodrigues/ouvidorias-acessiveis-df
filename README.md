@@ -1,7 +1,7 @@
 # Ouvidorias Acessíveis do Distrito Federal
 
 Mapa web das ouvidorias do GDF com recursos de acessibilidade para atendimento presencial ao cidadão,
-a partir das respostas do formulário **Selo Acessibilidade 2024** (autodeclaração das ouvidorias seccionais)
+a partir das respostas consolidadas dos formulários **Selo Acessibilidade 2024/2025** (autodeclaração das ouvidorias seccionais)
 e das divisões territoriais do DF (shapefiles do InfoSaúde/SES-DF).
 
 **Página publicada:** `docs/index.html` (arquivo único, sem servidor — pode ser servido via GitHub Pages).

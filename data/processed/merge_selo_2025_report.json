@@ -1,0 +1,63 @@
+{
+  "current_rows": 26,
+  "xlsx2024_rows": 26,
+  "xlsx2025_rows_raw": 64,
+  "xlsx2025_rows_after_dedup": 62,
+  "final_rows": 66,
+  "added_from_2025": 40,
+  "updated_from_2025": 22,
+  "kept_absent_from_2025": 4,
+  "duplicates_combined_2025": {
+    "controladoria-geral do distrito federal|": 3
+  },
+  "added_examples": [
+    "Administração Regional de Água Quente",
+    "Administração Regional de Águas Claras",
+    "Administração Regional de Arniqueiras",
+    "Administração Regional de Samambaia",
+    "Administração Regional de São Sebastião",
+    "Administração Regional do Guará",
+    "Administração Regional do Lago Sul",
+    "Administração Regional do Núcleo Bandeirante",
+    "Administração Regional do Plano Piloto",
+    "Administração Regional do Riacho Fundo",
+    "Administração Regional do Riacho Fundo II",
+    "Administração Regional do SIA",
+    "Administração Regional do Sol Nascente/Pôr do Sol",
+    "Administração Regional do Sudoeste/Octogonal",
+    "Agência Reguladora de Águas e Saneamento do DF (ADASA)",
+    "Banco de Brasília (BRB)",
+    "Casa Civil",
+    "Casa Militar",
+    "Companhia Urbanizadora da Nova Capital do Brasil (NOVACAP)",
+    "Corpo de Bombeiros (CBMDF)"
+  ],
+  "updated_examples": [
+    "Administração Regional da Ceilândia",
+    "Administração Regional da Santa Maria",
+    "Administração Regional de Planaltina",
+    "Administração Regional do SCIA",
+    "Centrais de Abastecimento do Distrito Federal (CEASA)",
+    "Companhia de Saneamento Ambiental do DF (CAESB)",
+    "Controladoria-Geral do Distrito Federal",
+    "Departamento de Estrada de Rodagem do DF (DER)",
+    "Fundação Hemocentro de Brasília (FHB)",
+    "Instituto de Assistência à Saúde dos Servidores do DF (INAS)",
+    "Junta Comercial, Industrial e de Serviços do Distrito Federal (JUCIS)",
+    "Procuradoria-Geral do Distrito Federal (PGDF)",
+    "Secretaria de Estado da Agricultura, Abastecimento e Desenvolvimento Rural",
+    "Secretaria de Estado da Segurança Pública",
+    "Secretaria de Estado de Administração Penitenciária",
+    "Secretaria de Estado de Comunicação",
+    "Secretaria de Estado de Economia",
+    "Secretaria de Estado de Justiça e Cidadania",
+    "Secretaria de Estado de Obras e Infraestrutura",
+    "Secretaria de Estado de Proteção da Ordem Urbanística - DF Legal"
+  ],
+  "kept_absent_examples": [
+    "Departamento de Trânsito do DF (DETRAN)",
+    "Secretaria de Estado de Esporte e Lazer",
+    "Companhia Imobiliária de Brasília (TERRACAP)",
+    "Secretaria de Estado de Saúde"
+  ]
+}

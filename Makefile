@@ -1,5 +1,7 @@
 .PHONY: all base dados site
+PYTHON ?= .venv/bin/python
+
 all: base dados site
-base:  ; python src/build_geo_base.py
-dados: ; PYTHONPATH=src python src/build_dados.py
-site:  ; python src/build_site.py
+base:  ; $(PYTHON) src/build_geo_base.py
+dados: ; PYTHONPATH=src $(PYTHON) src/build_dados.py
+site:  ; $(PYTHON) src/build_site.py
