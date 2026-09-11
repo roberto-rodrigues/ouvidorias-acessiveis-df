@@ -49,7 +49,7 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 .ic{display:inline-flex;gap:4px;flex-wrap:wrap;margin-top:6px}
 .ic span{font-size:.7rem;background:#e8f2f5;color:#17445d;padding:2px 6px;border-radius:6px}
 #map{height:100%;background:radial-gradient(circle at 2px 2px,rgba(255,255,255,.86) 1.4px,transparent 1.6px) 0 58%/32px 32px no-repeat,radial-gradient(circle at 2px 2px,rgba(255,255,255,.78) 1.4px,transparent 1.6px) 100% 2%/32px 32px no-repeat,linear-gradient(180deg,var(--map-bg),var(--map-bg2));position:relative;overflow:hidden}
-#map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}
+#map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}.leaflet-tooltip.ra-focus-label{background:rgba(255,255,255,.88);color:#17344f;border:1px solid rgba(220,232,238,.9);border-radius:999px;box-shadow:0 2px 8px rgba(11,28,43,.16);font-weight:700;font-size:.82rem;letter-spacing:.02em;padding:4px 9px}.leaflet-tooltip.ra-focus-label:before{display:none}
 .count{font-size:.8rem;color:var(--muted)}
 .popup b{color:var(--azul)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.85rem}
@@ -90,13 +90,19 @@ const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
 const INITIAL_CENTER=[-15.78,-47.85],INITIAL_ZOOM=10;
 const map = L.map('map',{zoomControl:true,attributionControl:false}).setView(INITIAL_CENTER,INITIAL_ZOOM);
-function estiloRA(f,hover=false){return {color:'#dce8ee',weight:hover?1.7:1.05,fillColor:'#789099',fillOpacity:hover?.9:.82};}
+let selectedRA='';
+function estiloRA(f,hover=false){const selected=f.properties.RA===selectedRA;return {color:selected?'#ffffff':'#dce8ee',weight:selected?2.2:(hover?1.7:1.05),fillColor:selected?'#5f7882':'#789099',fillOpacity:selected?.96:(hover?.9:.82)};}
 const raLayer = L.geoJSON(RAS,{style:(f)=>estiloRA(f),
   onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true,opacity:.95});
     l.on('mouseover',()=>l.setStyle(estiloRA(f,true)));l.on('mouseout',()=>l.setStyle(estiloRA(f,false)));
-    l.on('click',(e)=>{L.DomEvent.stopPropagation(e);sel.value=f.properties.RA;render()})}}).addTo(map);
+    l.on('click',(e)=>{L.DomEvent.stopPropagation(e);sel.value=f.properties.RA;selectedRA=f.properties.RA;showRAName(selectedRA);render()})}}).addTo(map);
 map.fitBounds(raLayer.getBounds(),{padding:[48,48]});
-function resetMapa(){sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();map.fitBounds(raLayer.getBounds(),{padding:[48,48],animate:true});}
+const raNameLayer=L.layerGroup().addTo(map);
+function getRALayer(ra){return raLayer.getLayers().find(l=>l.feature.properties.RA===ra)}
+function updateRAStyles(){raLayer.eachLayer(l=>l.setStyle(estiloRA(l.feature)))}
+function showRAName(ra){raNameLayer.clearLayers();if(!ra)return;const l=getRALayer(ra);if(!l)return;L.tooltip({permanent:true,direction:'center',className:'ra-focus-label',opacity:1,interactive:false}).setContent(ra).setLatLng(l.getBounds().getCenter()).addTo(raNameLayer)}
+function focusRA(ra,animate=true){selectedRA=ra||'';updateRAStyles();showRAName(selectedRA);const l=getRALayer(selectedRA);if(l)map.fitBounds(l.getBounds(),{padding:[70,70],animate})}
+function resetMapa(){selectedRA='';raNameLayer.clearLayers();sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();updateRAStyles();map.fitBounds(raLayer.getBounds(),{padding:[48,48],animate:true});}
 const resetControl=L.control({position:'topright'});resetControl.onAdd=()=>{const b=L.DomUtil.create('button','reset-map');b.type='button';b.title='Voltar ao mapa completo';b.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b);b.onclick=resetMapa;return b};resetControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
  d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><small>Ponto maior = mais itens de acessibilidade</small><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #dce8ee;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small>';return d};legend.addTo(map);
@@ -117,13 +123,13 @@ function render(){
   return (!q||(p.nome+p.orgao+p.RA+p.sigla).toLowerCase().includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>L.DomEvent.stopPropagation(e));
+  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);focusRA(p.RA)});
   const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
-  const go=()=>{map.flyTo([y,x],14);m.openPopup();document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
+  const go=()=>{focusRA(p.RA);m.openPopup();document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
   c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};cards.appendChild(c)});
  document.getElementById('count').textContent=`(${list.length})`;
- if(ra){const l=raLayer.getLayers().find(l=>l.feature.properties.RA===ra);if(l)map.fitBounds(l.getBounds())}
+ if(ra){focusRA(ra)}else if(selectedRA){updateRAStyles();showRAName(selectedRA)}
 }
 document.getElementById('q').oninput=render;sel.onchange=render;render();
 function ajustarTamanhoMapa(){map.invalidateSize();if(!sel.value)map.fitBounds(raLayer.getBounds(),{padding:[48,48]});}
