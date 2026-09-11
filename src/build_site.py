@@ -28,36 +28,38 @@ HTML = r"""<!DOCTYPE html>
 <title>Ouvidorias Acessíveis do DF</title>
 <style>__LCSS__</style>
 <style>
-:root{--azul:#1e3a8a;--azul2:#2563eb;--verde:#15803d;--bg:#f6f7f9;--txt:#1f2937;--muted:#6b7280;--card:#fff;--b:#e5e7eb}
+:root{--azul:#15324f;--azul2:#2563eb;--verde:#15803d;--bg:#dfeaf0;--txt:#1f2937;--muted:#64748b;--card:#fff;--b:#d7e1e8;--map-bg:#3e93ad;--map-bg2:#2f7893;--map-base:#789099;--map-line:#dce8ee;--map-focus:#17344f}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,Segoe UI,Roboto,sans-serif;color:var(--txt);background:var(--bg)}
-header{background:var(--azul);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px}
-header h1{font-size:1.15rem;margin:0;font-weight:600}
-header .tag{margin-left:auto;font-size:.75rem;background:#fbbf24;color:#111;padding:3px 8px;border-radius:999px;font-weight:600}
+header{background:linear-gradient(90deg,#17344f,#235f77);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 10px rgba(15,35,50,.25);position:relative;z-index:20}
+header h1{font-size:1.15rem;margin:0;font-weight:650;letter-spacing:.01em}
+header .tag{margin-left:auto;font-size:.75rem;background:#eef6f9;color:#17344f;padding:3px 8px;border-radius:999px;font-weight:700}
 .layout{display:grid;grid-template-columns:360px 1fr;height:calc(100vh - 54px)}
-aside{background:var(--card);border-right:1px solid var(--b);overflow:auto;padding:16px}
+aside{background:rgba(255,255,255,.96);border-right:1px solid var(--b);overflow:auto;padding:16px;box-shadow:4px 0 18px rgba(20,45,70,.08);z-index:15}
 aside h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:14px 0 8px}
-input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:.95rem}
+input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:.95rem;background:#fff}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid #cbd5e1;border-radius:999px;padding:5px 10px;font-size:.8rem;cursor:pointer;background:#fff}
-.chip[aria-pressed=true]{background:var(--azul2);color:#fff;border-color:var(--azul2)}
+.chip{border:1px solid #cbd5e1;border-radius:999px;padding:5px 10px;font-size:.8rem;cursor:pointer;background:#fff;color:#213547}
+.chip[aria-pressed=true]{background:#17344f;color:#fff;border-color:#17344f}
 .chip:focus-visible,.card:focus-visible,button:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
 .card{border:1px solid var(--b);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;background:#fff}
-.card:hover,.card.active{border-color:var(--azul2);box-shadow:0 0 0 2px #bfdbfe}
+.card:hover,.card.active{border-color:#17344f;box-shadow:0 0 0 2px rgba(23,52,79,.18)}
 .card b{display:block;font-size:.95rem}
 .card small{color:var(--muted)}
 .ic{display:inline-flex;gap:4px;flex-wrap:wrap;margin-top:6px}
-.ic span{font-size:.7rem;background:#dcfce7;color:var(--verde);padding:2px 6px;border-radius:6px}
-#map{height:100%}
+.ic span{font-size:.7rem;background:#e8f2f5;color:#17445d;padding:2px 6px;border-radius:6px}
+#map{height:100%;background:radial-gradient(circle at 2px 2px,rgba(255,255,255,.86) 1.4px,transparent 1.6px) 0 58%/32px 32px no-repeat,radial-gradient(circle at 2px 2px,rgba(255,255,255,.78) 1.4px,transparent 1.6px) 100% 2%/32px 32px no-repeat,linear-gradient(180deg,var(--map-bg),var(--map-bg2));position:relative;overflow:hidden}
+#map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}
 .count{font-size:.8rem;color:var(--muted)}
 .popup b{color:var(--azul)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.85rem}
-.legend{background:#fff;padding:8px 10px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,.2)}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
-@media(max-width:800px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}aside{max-height:45vh}}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.kpis div{background:#eff6ff;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
+.legend{background:rgba(255,255,255,.94);padding:8px 10px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.18);border:1px solid rgba(215,225,232,.9)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}.reset-map{background:#fff;border:0;border-radius:8px;padding:8px 10px;font-weight:800;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.reset-map:hover{background:#eef6f9}
+@media(max-width:800px){header{padding:10px 12px;gap:8px;flex-wrap:wrap}header h1{font-size:1rem}header .tag{margin-left:0;font-size:.68rem}.layout{grid-template-columns:1fr;grid-template-rows:auto minmax(56vh,1fr);height:auto;min-height:calc(100vh - 54px)}aside{max-height:42vh;border-right:0;border-bottom:1px solid var(--b);padding:12px}#map{height:58vh}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.leaflet-tooltip.ra-label{font-size:.82rem;padding:4px 6px}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.kpis div{background:#eef6f9;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
 .badge{font-size:.7rem;padding:2px 6px;border-radius:6px;margin-right:4px}.b-lib{background:#dcfce7;color:#15803d}.b-nolib{background:#f3f4f6;color:#6b7280}.b-aprox{background:#fef3c7;color:#92400e}
 .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9999}
+@media(max-width:800px){html,body{max-width:100%;overflow-x:hidden}header{align-items:flex-start}header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-size:.95rem}header .tag{margin-left:0}.layout,aside,main,#map{min-width:0;width:100%;max-width:100vw}.leaflet-container{max-width:100vw}.kpis{grid-template-columns:repeat(3,minmax(0,1fr));width:100%;overflow:hidden}.kpis div{min-width:0;padding:7px 4px}.kpis b{font-size:1.15rem}.kpis span{font-size:.62rem}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chip{white-space:nowrap}.legend{max-width:82vw;font-size:.72rem}.reset-map{padding:7px 9px;font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -86,15 +88,21 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 const RAS = __RAS__;
 const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
-const map = L.map('map',{zoomControl:true}).setView([-15.78,-47.85],10);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
-const RA_COLS=["#60a5fa","#34d399","#fbbf24","#f472b6","#a78bfa","#fb923c","#2dd4bf","#f87171","#a3e635","#38bdf8","#facc15","#4ade80","#c084fc","#fda4af","#93c5fd","#86efac","#fdba74","#fcd34d","#67e8f9","#d8b4fe","#bef264","#f9a8d4","#7dd3fc","#6ee7b7","#fecaca","#c4b5fd","#a5f3fc","#fde68a","#bbf7d0","#fed7aa","#e9d5ff","#bae6fd","#fecdd3"];
-const raLayer = L.geoJSON(RAS,{style:(f)=>{const i=RAS.features.indexOf(f);return {color:'#1f2937',weight:1.2,fillColor:RA_COLS[i%RA_COLS.length],fillOpacity:.22};},
+const INITIAL_CENTER=[-15.78,-47.85],INITIAL_ZOOM=10;
+const map = L.map('map',{zoomControl:true,attributionControl:false}).setView(INITIAL_CENTER,INITIAL_ZOOM);
+const FOCO_RAS=new Set(['Ceilândia','Taguatinga','Plano Piloto']);
+function estiloRA(f,hover=false){const foco=FOCO_RAS.has(f.properties.RA);return {color:'#dce8ee',weight:hover?1.7:1.05,fillColor:foco?'#17344f':'#789099',fillOpacity:foco?.92:.82,dashArray:foco?'2 3':null};}
+const raLayer = L.geoJSON(RAS,{style:(f)=>estiloRA(f),
   onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true,opacity:.95});
-    l.on('mouseover',()=>l.setStyle({fillOpacity:.45,weight:1.8}));l.on('mouseout',()=>l.setStyle({fillOpacity:.22,weight:1.2}));
-    l.on('click',()=>{sel.value=f.properties.RA;render()})}}).addTo(map);
+    l.on('mouseover',()=>l.setStyle(estiloRA(f,true)));l.on('mouseout',()=>l.setStyle(estiloRA(f,false)));
+    l.on('click',(e)=>{L.DomEvent.stopPropagation(e);sel.value=f.properties.RA;render()})}}).addTo(map);
+map.fitBounds(raLayer.getBounds(),{padding:[48,48]});
+function resetMapa(){sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();map.fitBounds(raLayer.getBounds(),{padding:[48,48],animate:true});}
+const labelLayer=L.layerGroup().addTo(map);
+['Ceilândia','Taguatinga','Plano Piloto'].forEach(nome=>{const l=raLayer.getLayers().find(x=>x.feature.properties.RA===nome);if(!l)return;L.tooltip({permanent:true,direction:nome==='Ceilândia'?'left':'center',className:'ra-label',opacity:1,interactive:false}).setContent(nome.toUpperCase()).setLatLng(l.getBounds().getCenter()).addTo(labelLayer)});
+const resetControl=L.control({position:'topright'});resetControl.onAdd=()=>{const b=L.DomUtil.create('button','reset-map');b.type='button';b.title='Voltar ao mapa completo';b.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b);b.onclick=resetMapa;return b};resetControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
- d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><small>Ponto maior = mais itens de acessibilidade</small><hr style="margin:7px 0;border:none;border-top:1px solid #e5e7eb"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #1f2937;background:#93c5fd;vertical-align:middle;margin-right:6px"></span>33 RAs (base oficial)<br><small>Clique numa RA para filtrar a lista</small>';return d};legend.addTo(map);
+ d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><small>Ponto maior = mais itens de acessibilidade</small><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #dce8ee;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #dce8ee;background:#17344f;vertical-align:middle;margin-right:6px"></span>RAs destacadas<br><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small>';return d};legend.addTo(map);
 const sel=document.getElementById('ra');
 [...new Set(RAS.features.map(f=>f.properties.RA))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
 const chips=document.getElementById('chips');const active=new Set();
@@ -112,7 +120,7 @@ function render(){
   return (!q||(p.nome+p.orgao+p.RA+p.sigla).toLowerCase().includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);
+  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>L.DomEvent.stopPropagation(e));
   const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
   const go=()=>{map.flyTo([y,x],14);m.openPopup();document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
@@ -121,8 +129,10 @@ function render(){
  if(ra){const l=raLayer.getLayers().find(l=>l.feature.properties.RA===ra);if(l)map.fitBounds(l.getBounds())}
 }
 document.getElementById('q').oninput=render;sel.onchange=render;render();
+function ajustarTamanhoMapa(){map.invalidateSize();if(!sel.value)map.fitBounds(raLayer.getBounds(),{padding:[48,48]});}
+setTimeout(ajustarTamanhoMapa,150);window.addEventListener('resize',()=>setTimeout(ajustarTamanhoMapa,150));
 // Clicar fora das regiões/marcadores (área vazia do mapa) volta à visão inicial.
-map.on('click',()=>{map.setView([-15.78,-47.85],10,{animate:true});if(sel.value){sel.value='';render();}});
+map.on('click',resetMapa);
 </script>
 </body></html>"""
 out = (HTML.replace("__RAS__", json.dumps(ras, ensure_ascii=False))
