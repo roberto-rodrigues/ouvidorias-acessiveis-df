@@ -55,6 +55,14 @@ delimitador `;`, decimal vírgula) e rodar `make dados site`.
 - `data/processed/coordenadas_validadas_import_report.json` — o que o CSV validado casou na base
   e a lista de registros que continuam sem coordenada validada.
 
+## Marcadores
+
+Os marcadores são **agrupados** (Leaflet.markercluster) com raio de 45 px: no mapa completo aparece um
+círculo azul-escuro com a contagem de ouvidorias; clicar no agrupamento aproxima e separa os pontos.
+A partir do zoom 15 o agrupamento é desativado e cada ouvidoria aparece individualmente.
+Clicar num marcador ou num cartão da lista destaca a Região Administrativa e mostra o nome dela;
+se o ponto ainda estiver dentro de um agrupamento, o mapa aproxima até exibi-lo.
+
 ## Atualizar com novas respostas
 
 1. Substitua `data/raw/selo_acessibilidade_2024.csv` pela exportação nova do formulário.
@@ -63,4 +71,4 @@ delimitador `;`, decimal vírgula) e rodar `make dados site`.
 
 ## Créditos
 
-Fundo cartográfico estilizado sem provedor externo · Limites territoriais: base oficial das RAs do DF (RA.json) + SES-DF (InfoSaúde) · Leaflet 1.9.4 (BSD-2).
+Fundo cartográfico estilizado sem provedor externo · Limites territoriais: base oficial das RAs do DF (RA.json) + SES-DF (InfoSaúde) · Leaflet 1.9.4 (BSD-2) · Leaflet.markercluster 1.5.3 (MIT, vendorizado em `src/markercluster.*`).

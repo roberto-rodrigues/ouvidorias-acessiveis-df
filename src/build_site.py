@@ -28,6 +28,7 @@ HTML = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ouvidorias Acessíveis do DF</title>
 <style>__LCSS__</style>
+<style>__MCCSS__</style>
 <style>
 :root{--azul:#15324f;--azul2:#2563eb;--verde:#15803d;--bg:#dfeaf0;--txt:#1f2937;--muted:#64748b;--card:#fff;--b:#d7e1e8;--map-bg:#3e93ad;--map-bg2:#2f7893;--map-base:#789099;--map-line:#dce8ee;--map-focus:#17344f}
 *{box-sizing:border-box}
@@ -50,17 +51,17 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 .ic{display:inline-flex;gap:4px;flex-wrap:wrap;margin-top:6px}
 .ic span{font-size:.7rem;background:#e8f2f5;color:#17445d;padding:2px 6px;border-radius:6px}
 #map{height:100%;background:radial-gradient(circle at 2px 2px,rgba(255,255,255,.86) 1.4px,transparent 1.6px) 0 58%/32px 32px no-repeat,radial-gradient(circle at 2px 2px,rgba(255,255,255,.78) 1.4px,transparent 1.6px) 100% 2%/32px 32px no-repeat,linear-gradient(180deg,var(--map-bg),var(--map-bg2));position:relative;overflow:hidden}
-#map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}.leaflet-tooltip.ra-focus-label{background:rgba(255,255,255,.88);color:#17344f;border:1px solid rgba(220,232,238,.9);border-radius:999px;box-shadow:0 2px 8px rgba(11,28,43,.16);font-weight:700;font-size:.82rem;letter-spacing:.02em;padding:4px 9px}.leaflet-tooltip.ra-focus-label:before{display:none}
+#map .leaflet-pane,#map .leaflet-control-container{z-index:2}.leaflet-container{background:transparent}.leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.18))}.leaflet-tooltip.ra-label{background:#fff;color:#17344f;border:0;border-radius:2px;box-shadow:0 2px 8px rgba(11,28,43,.22);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:5px 9px;text-transform:uppercase}.leaflet-tooltip.ra-label:before{display:none}.leaflet-tooltip.ra-focus-label{background:rgba(255,255,255,.88);color:#17344f;border:1px solid rgba(220,232,238,.9);border-radius:999px;box-shadow:0 2px 8px rgba(11,28,43,.16);font-weight:700;font-size:.82rem;letter-spacing:.02em;padding:4px 9px}.leaflet-tooltip.ra-focus-label:before{display:none}.mc-icon{background:#17344f;border:2.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;line-height:1;box-shadow:0 2px 9px rgba(11,28,43,.4);cursor:pointer}.mc-icon span{font-size:.76rem;letter-spacing:-.02em}.mc-icon:hover{background:#235f77}
 .count{font-size:.8rem;color:var(--muted)}
 .popup b{color:var(--azul)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.85rem}
 .legend{background:rgba(255,255,255,.94);padding:8px 10px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.18);border:1px solid rgba(215,225,232,.9)}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}.reset-map{background:#fff;border:0;border-radius:8px;padding:8px 10px;font-weight:800;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.reset-map:hover{background:#eef6f9}
-@media(max-width:800px){header{padding:10px 12px;gap:8px;flex-wrap:wrap}header h1{font-size:1rem}header .tag{margin-left:0;font-size:.68rem}.layout{grid-template-columns:1fr;grid-template-rows:auto minmax(56vh,1fr);height:auto;min-height:calc(100vh - 54px)}aside{max-height:42vh;border-right:0;border-bottom:1px solid var(--b);padding:12px}#map{height:58vh}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.leaflet-tooltip.ra-label{font-size:.82rem;padding:4px 6px}}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.kpis div{background:#eef6f9;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
+@media(max-width:800px){header{padding:10px 12px;gap:8px;flex-wrap:wrap}header h1{font-size:1rem}header .tag{margin-left:0;font-size:.68rem}.layout{grid-template-columns:1fr;grid-template-rows:auto minmax(56vh,1fr);height:auto;min-height:calc(100vh - 54px)}aside{max-height:42vh;border-right:0;border-bottom:1px solid var(--b);padding:12px}#map{height:58vh}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.leaflet-tooltip.ra-label{font-size:.82rem;padding:4px 6px}}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.kpis div{background:#eef6f9;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
 .badge{font-size:.7rem;padding:2px 6px;border-radius:6px;margin-right:4px}.b-lib{background:#dcfce7;color:#15803d}.b-nolib{background:#f3f4f6;color:#6b7280}.b-aprox{background:#fef3c7;color:#92400e}.b-valid{background:#e0f2fe;color:#075985}
 .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9999}
-@media(max-width:800px){html,body{max-width:100%;overflow-x:hidden}header{align-items:flex-start}header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-size:.95rem}header .tag{margin-left:0}.layout,aside,main,#map{min-width:0;width:100%;max-width:100vw}.leaflet-container{max-width:100vw}.kpis{grid-template-columns:repeat(3,minmax(0,1fr));width:100%;overflow:hidden}.kpis div{min-width:0;padding:7px 4px}.kpis b{font-size:1.15rem}.kpis span{font-size:.62rem}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chip{white-space:nowrap}.legend{max-width:82vw;font-size:.72rem}.reset-map{padding:7px 9px;font-size:.8rem}}
+@media(max-width:800px){html,body{max-width:100%;overflow-x:hidden}header{align-items:flex-start}header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-size:.95rem}header .tag{margin-left:0}.layout,aside,main,#map{min-width:0;width:100%;max-width:100vw}.leaflet-container{max-width:100vw}.kpis{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;overflow:hidden}.kpis div{min-width:0;padding:7px 4px}.kpis b{font-size:1.15rem}.kpis span{font-size:.62rem}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chip{white-space:nowrap}.legend{max-width:72vw;font-size:.72rem;line-height:1.45;padding:6px 8px}.legend .lg-note{display:none}.reset-map{padding:7px 9px;font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -72,7 +73,7 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 </header>
 <div class="layout">
 <aside aria-label="Filtros e lista">
-  <div class="kpis"><div><b>__N__</b><span>ouvidorias com selo</span></div><div><b>__NLIB__</b><span>com Libras presencial</span></div><div><b>__NCAP__</b><span>com equipe capacitada</span></div></div>
+  <div class="kpis"><div><b>__N__</b><span>ouvidorias com selo</span></div><div><b>__NLIB__</b><span>com Libras presencial</span></div><div><b>__NCAP__</b><span>com equipe capacitada</span></div><div><b>__NVALID__</b><span>com coord. validada</span></div></div>
   <label for="q"><h2>Buscar</h2></label>
   <input id="q" type="search" placeholder="Nome, órgão ou região…" aria-label="Buscar ouvidoria">
   <label for="ra"><h2>Região Administrativa</h2></label>
@@ -85,12 +86,13 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 <main><div id="map" role="application" aria-label="Mapa das ouvidorias do DF"></div></main>
 </div>
 <script>__LJS__</script>
+<script>__MCJS__</script>
 <script>
 const RAS = __RAS__;
 const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
 const INITIAL_CENTER=[-15.78,-47.85],INITIAL_ZOOM=10;
-const map = L.map('map',{zoomControl:true,attributionControl:false}).setView(INITIAL_CENTER,INITIAL_ZOOM);
+const map = L.map('map',{zoomControl:true,attributionControl:false,minZoom:9,maxZoom:18}).setView(INITIAL_CENTER,INITIAL_ZOOM);
 let selectedRA='';
 function estiloRA(f,hover=false){const selected=f.properties.RA===selectedRA;return {color:selected?'#ffffff':'#c7d8df',weight:selected?2.8:(hover?2.1:1.45),fillColor:selected?'#5f7882':'#789099',fillOpacity:selected?.96:(hover?.9:.82),opacity:.98};}
 const raLayer = L.geoJSON(RAS,{style:(f)=>estiloRA(f),
@@ -103,18 +105,25 @@ const raNameLayer=L.layerGroup().addTo(map);
 function getRALayer(ra){return raLayer.getLayers().find(l=>l.feature.properties.RA===ra)}
 function updateRAStyles(){raLayer.eachLayer(l=>l.setStyle(estiloRA(l.feature)))}
 function showRAName(ra){raNameLayer.clearLayers();if(!ra)return;const l=getRALayer(ra);if(!l)return;L.tooltip({permanent:true,direction:'center',className:'ra-focus-label',opacity:1,interactive:false}).setContent(ra).setLatLng(l.getBounds().getCenter()).addTo(raNameLayer)}
-function focusRA(ra,animate=true){selectedRA=ra||'';updateRAStyles();showRAName(selectedRA);const l=getRALayer(selectedRA);if(l)map.fitBounds(l.getBounds(),{padding:[70,70],animate})}
+function destacarRA(ra){selectedRA=ra||'';updateRAStyles();showRAName(selectedRA)}
+function focusRA(ra,animate=true){destacarRA(ra);const l=getRALayer(selectedRA);if(l)map.fitBounds(l.getBounds(),{padding:[70,70],animate})}
+// Mostra a ouvidoria: se o ponto estiver dentro de um agrupamento, aproxima até exibi-lo.
+function mostrarOuvidoria(m,y,x){if(markers.getVisibleParent(m)===m){m.openPopup();return}
+ const alvo=Math.max(15,map.getZoom());
+ if(map.getZoom()===alvo&&map.getCenter().equals(L.latLng(y,x))){m.openPopup();return}
+ map.once('moveend',()=>m.openPopup());map.setView([y,x],alvo,{animate:true})}
 function resetMapa(){selectedRA='';raNameLayer.clearLayers();sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();updateRAStyles();map.fitBounds(raLayer.getBounds(),{padding:fullPadding(),animate:true});}
 const resetControl=L.control({position:'topright'});resetControl.onAdd=()=>{const b=L.DomUtil.create('button','reset-map');b.type='button';b.title='Voltar ao mapa completo';b.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b);b.onclick=resetMapa;return b};resetControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
- d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><small>Ponto maior = mais itens de acessibilidade</small><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small>';return d};legend.addTo(map);
+ d.innerHTML='<b>Marcadores</b><br><i style="background:#16a34a"></i>Libras presencial<br><i style="background:#3b82f6"></i>Sem Libras presencial<br><span class="lg-note"><small>Ponto maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span>';return d};legend.addTo(map);
 const sel=document.getElementById('ra');
 [...new Set(RAS.features.map(f=>f.properties.RA))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
 const chips=document.getElementById('chips');const active=new Set();
 REC.forEach(r=>{const b=document.createElement('button');b.className='chip';b.textContent=sh(r);b.setAttribute('aria-pressed','false');
  b.onclick=()=>{active.has(r)?active.delete(r):active.add(r);b.setAttribute('aria-pressed',active.has(r));render()};chips.appendChild(b)});
 const col=p=>p.libras==='Sim'?'#16a34a':'#3b82f6';
-const markers=L.layerGroup().addTo(map);let cur=null;
+function clusterIcon(cluster){const n=cluster.getChildCount();const d=n<10?34:(n<30?42:50);return L.divIcon({html:'<div class="mc-icon" style="width:'+d+'px;height:'+d+'px"><span>'+n+'</span></div>',className:'',iconSize:L.point(d,d)})}
+const markers=L.markerClusterGroup({maxClusterRadius:45,showCoverageOnHover:false,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,removeOutsideVisibleBounds:true,iconCreateFunction:clusterIcon}).addTo(map);let cur=null;
 function popup(p,y,x){return `<div class="popup"><b>${p.nome}</b><br><small>${p.orgao}</small><br><small>${p.endereco} · RA ${p.RA}</small><br>
  <span class="badge ${p.libras==='Sim'?'b-lib':'b-nolib'}">${p.libras==='Sim'?'Libras presencial':'Sem Libras presencial'}</span>${p.fonte==='aprox'?'<span class="badge b-aprox">localização aproximada</span>':''}${p.fonte==='validado'?'<span class="badge b-valid">coordenada validada</span>':''}
  <ul>${p.itens.map(a=>'<li>'+a+'</li>').join('')}${p.capacitado==='Sim'?'<li>Equipe com capacitação em acessibilidade (2020–2024)</li>':''}</ul>
@@ -125,10 +134,10 @@ function render(){
   return (!q||(p.nome+p.orgao+p.RA+p.sigla).toLowerCase().includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);focusRA(p.RA)});
+  const m=L.circleMarker([y,x],{radius:7+p.n_itens*0.8,color:'#fff',weight:2.5,fillColor:col(p),fillOpacity:1}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA)});
   const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}${p.fonte==='validado'?' · <span class="badge b-valid">coord. validada</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
-  const go=()=>{focusRA(p.RA);m.openPopup();document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
+  const go=()=>{destacarRA(p.RA);mostrarOuvidoria(m,y,x);document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
   c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};cards.appendChild(c)});
  document.getElementById('count').textContent=`(${list.length})`;
  if(ra){focusRA(ra)}else if(selectedRA){updateRAStyles();showRAName(selectedRA)}
@@ -142,8 +151,10 @@ map.on('click',resetMapa);
 </body></html>"""
 out = (HTML.replace("__RAS__", json.dumps(ras, ensure_ascii=False))
            .replace("__PTS__", json.dumps(pts, ensure_ascii=False))
-           .replace("__REC__", json.dumps(REC, ensure_ascii=False)).replace("__SHORT__", json.dumps(SHORT, ensure_ascii=False)).replace("__N__", str(n)).replace("__NLIB__", str(n_lib)).replace("__NCAP__", str(n_cap))
+           .replace("__REC__", json.dumps(REC, ensure_ascii=False)).replace("__SHORT__", json.dumps(SHORT, ensure_ascii=False)).replace("__N__", str(n)).replace("__NLIB__", str(n_lib)).replace("__NCAP__", str(n_cap)).replace("__NVALID__", str(n_valid))
            .replace("__LCSS__", open("src/leaflet.css").read())
-           .replace("__LJS__", open("src/leaflet.js").read()))
+           .replace("__MCCSS__", open("src/markercluster.css").read())
+           .replace("__LJS__", open("src/leaflet.js").read())
+           .replace("__MCJS__", open("src/markercluster.js").read()))
 open("docs/index.html", "w", encoding="utf-8").write(out)
 print("ok", len(out)//1024, "KB")
