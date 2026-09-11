@@ -57,7 +57,7 @@ input[type=search],select{width:100%;padding:10px;border:1px solid #cbd5e1;borde
 .popup b{color:var(--azul)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.85rem}
 .legend{background:rgba(255,255,255,.94);padding:6px 10px 8px;border-radius:8px;font-size:.8rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.18);border:1px solid rgba(215,225,232,.9)}.legend h4{margin:0 0 2px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:#17344f;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:space-between}.legend h4 span{font-size:.7rem}.legend.recolhida .lg-body{display:none}.legend.recolhida h4{margin:0}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}.reset-map{background:#fff;border:0;border-radius:8px;padding:8px 10px;font-weight:800;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.reset-map:hover{background:#eef6f9}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}.ctrl-group{display:flex;gap:6px;align-items:center}.reset-map{background:#fff;border:0;border-radius:8px;height:36px;padding:0 12px;font-weight:800;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.reset-map:hover{background:#eef6f9}.clear-map{background:#fff;border:0;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#17344f;box-shadow:0 2px 10px rgba(11,28,43,.22);cursor:pointer}.clear-map:hover{background:#eef6f9}.clear-map.off{color:#a8bcc7;cursor:default;box-shadow:0 1px 4px rgba(11,28,43,.10)}.clear-map.off:hover{background:#fff}
 @media(max-width:800px){header{padding:10px 12px;gap:8px;flex-wrap:wrap}header h1{font-size:1rem}header .tag{margin-left:0;font-size:.68rem}.layout{grid-template-columns:1fr;grid-template-rows:auto minmax(56vh,1fr);height:auto;min-height:calc(100vh - 54px)}aside{max-height:42vh;border-right:0;border-bottom:1px solid var(--b);padding:12px}#map{height:58vh}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.leaflet-tooltip.ra-label{font-size:.82rem;padding:4px 6px}}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.kpis div{background:#eef6f9;border-radius:8px;padding:8px;text-align:center}.kpis b{display:block;font-size:1.3rem;color:var(--azul)}.kpis span{font-size:.7rem;color:var(--muted)}
 .badge{font-size:.7rem;padding:2px 6px;border-radius:6px;margin-right:4px}.b-lib{background:#dcfce7;color:#15803d}.b-nolib{background:#f3f4f6;color:#6b7280}.b-aprox{background:#fef3c7;color:#92400e}.b-valid{background:#e0f2fe;color:#075985}
@@ -93,7 +93,7 @@ const RAS = __RAS__;
 const PTS = __PTS__;
 const REC = __REC__;const SHORT=__SHORT__;const sh=a=>SHORT[a]||a;
 const INITIAL_CENTER=[-15.78,-47.85],INITIAL_ZOOM=10;
-const map = L.map('map',{zoomControl:true,attributionControl:true,minZoom:9,maxZoom:18}).setView(INITIAL_CENTER,INITIAL_ZOOM);
+const map = L.map('map',{zoomControl:true,attributionControl:true,minZoom:9,maxZoom:18,zoomSnap:.25,zoomDelta:.5}).setView(INITIAL_CENTER,INITIAL_ZOOM);
 const Z_DETALHE=13; // a partir daqui entra o fundo detalhado (ruas, prédios, POIs)
 let selectedRA='';
 function estiloRA(f,hover=false){const det=map.getZoom()>=Z_DETALHE;const selected=f.properties.RA===selectedRA;const base=det?.10:.82;return {color:selected?(det?'#17344f':'#ffffff'):(det?'#8aa0aa':'#c7d8df'),weight:selected?2.8:(hover?2.1:(det?1.3:1.45)),fillColor:selected?'#5f7882':'#789099',fillOpacity:selected?(det?.25:.96):(hover?base+.08:base),opacity:det?.85:.98};}
@@ -101,7 +101,7 @@ const raLayer = L.geoJSON(RAS,{style:(f)=>estiloRA(f),
   onEachFeature:(f,l)=>{l.bindTooltip(f.properties.RA,{sticky:true,opacity:.95});
     l.on('mouseover',()=>l.setStyle(estiloRA(f,true)));l.on('mouseout',()=>l.setStyle(estiloRA(f,false)));
     l.on('click',(e)=>{L.DomEvent.stopPropagation(e);sel.value=f.properties.RA;selectedRA=f.properties.RA;showRAName(selectedRA);render()})}}).addTo(map);
-function fullPadding(){return map.getSize().x<600?[32,32]:[8,8]}
+function fullPadding(){return map.getSize().x<600?[10,10]:[3,3]}
 map.fitBounds(raLayer.getBounds(),{padding:fullPadding()});
 const raNameLayer=L.layerGroup().addTo(map);
 function getRALayer(ra){return raLayer.getLayers().find(l=>l.feature.properties.RA===ra)}
@@ -123,7 +123,16 @@ function mostrarOuvidoria(m,y,x){if(markers.getVisibleParent(m)===m){m.openPopup
  if(map.getZoom()===alvo&&map.getCenter().equals(L.latLng(y,x))){m.openPopup();return}
  map.once('moveend',()=>m.openPopup());map.setView([y,x],alvo,{animate:true})}
 function resetMapa(){selectedRA='';raNameLayer.clearLayers();sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();updateRAStyles();map.fitBounds(raLayer.getBounds(),{padding:fullPadding(),animate:true});}
-const resetControl=L.control({position:'topright'});resetControl.onAdd=()=>{const b=L.DomUtil.create('button','reset-map');b.type='button';b.title='Voltar ao mapa completo';b.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b);b.onclick=resetMapa;return b};resetControl.addTo(map);
+// Limpar apenas a busca e a Região Administrativa marcada (mantém os filtros de recurso).
+function limparFiltros(){const tinhaRA=!!sel.value;document.getElementById('q').value='';if(tinhaRA){sel.value='';selectedRA='';raNameLayer.clearLayers()}render();updateRAStyles();
+ if(tinhaRA){map.fitBounds(raLayer.getBounds(),{padding:fullPadding(),animate:true})}}
+function atualizarBotaoLimpar(){const b=document.querySelector('.clear-map');if(!b)return;const ativo=!!document.getElementById('q').value||!!sel.value;b.disabled=!ativo;b.classList.toggle('off',!ativo)}
+const botoesControl=L.control({position:'topright'});botoesControl.onAdd=()=>{const d=L.DomUtil.create('div','ctrl-group');
+ const b1=L.DomUtil.create('button','reset-map',d);b1.type='button';b1.title='Voltar ao mapa completo';b1.textContent='Mapa completo';L.DomEvent.disableClickPropagation(b1);b1.onclick=resetMapa;
+ const b2=L.DomUtil.create('button','clear-map',d);b2.type='button';b2.title='Limpar busca e região marcada';b2.setAttribute('aria-label','Limpar busca e região marcada');
+ b2.innerHTML='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20h14"/><path d="M9.2 20 19.5 9.7a2.1 2.1 0 0 0 0-3L17.6 4.8a2.1 2.1 0 0 0-3 0L4.3 15.1a2.1 2.1 0 0 0 0 3l1.9 1.9z"/><path d="m10.6 6.6 6.8 6.8"/></svg>';
+ L.DomEvent.disableClickPropagation(b2);b2.onclick=limparFiltros;
+ return d};botoesControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
  d.innerHTML='<h4>Legenda <span aria-hidden="true">▾</span></h4><div class="lg-body"><b>Marcadores</b><br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#16a34a" stroke="#fff" stroke-width="3"/></svg>Libras presencial<br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#3b82f6" stroke="#fff" stroke-width="3"/></svg>Sem Libras presencial<br><span class="lg-note"><small>Pino maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br><small>Aproxime (zoom 13+) para ver ruas e prédios</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span></div>';
  if(window.innerWidth<800){d.classList.add('recolhida')}
@@ -137,6 +146,7 @@ const chips=document.getElementById('chips');const active=new Set();
 REC.forEach(r=>{const b=document.createElement('button');b.className='chip';b.textContent=sh(r);b.setAttribute('aria-pressed','false');
  b.onclick=()=>{active.has(r)?active.delete(r):active.add(r);b.setAttribute('aria-pressed',active.has(r));render()};chips.appendChild(b)});
 const col=p=>p.libras==='Sim'?'#16a34a':'#3b82f6';
+const semAcento=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 // Marcador em forma de pino (ponteiro) com "i" de informação; a ponta fica exatamente na coordenada.
 function pinoHTML(cor){return '<svg viewBox="0 0 24 36" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="'+cor+'" stroke="#ffffff" stroke-width="2"/><circle cx="12" cy="12" r="6.3" fill="#ffffff"/><text x="12" y="16" text-anchor="middle" font-size="11.5" font-weight="800" fill="'+cor+'" font-family="system-ui,Segoe UI,Roboto,sans-serif">i</text></svg>'}
 function pinoIcon(p){const h=Math.round(30+p.n_itens*1.3),w=Math.round(h*2/3);return L.divIcon({className:'pino',html:pinoHTML(col(p)),iconSize:L.point(w,h),iconAnchor:L.point(w/2,h),popupAnchor:L.point(0,-h+6)})}
@@ -147,9 +157,9 @@ function popup(p,y,x){return `<div class="popup"><b>${p.nome}</b><br><small>${p.
  <ul>${p.itens.map(a=>'<li>'+a+'</li>').join('')}${p.capacitado==='Sim'?'<li>Equipe com capacitação em acessibilidade (2020–2024)</li>':''}</ul>
  <a href="https://www.google.com/maps/dir/?api=1&destination=${y},${x}" target="_blank" rel="noopener">Como chegar ↗</a> · <small>Autodeclaração em ${p.data}</small></div>`}
 function render(){
- const q=document.getElementById('q').value.toLowerCase(),ra=sel.value;
+ const q=semAcento(document.getElementById('q').value.trim()),ra=sel.value;
  const list=PTS.features.filter(f=>{const p=f.properties;
-  return (!q||(p.nome+p.orgao+p.RA+p.sigla).toLowerCase().includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
+  return (!q||semAcento(p.nome+p.orgao+p.RA+p.sigla).includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
   const m=L.marker([y,x],{icon:pinoIcon(p),riseOnHover:true}).bindPopup(popup(p,y,x)).addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA)});
@@ -159,6 +169,7 @@ function render(){
   c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};cards.appendChild(c)});
  document.getElementById('count').textContent=`(${list.length})`;
  if(ra){focusRA(ra)}else if(selectedRA){updateRAStyles();showRAName(selectedRA)}
+ atualizarBotaoLimpar()
 }
 document.getElementById('q').oninput=render;sel.onchange=render;render();
 function ajustarTamanhoMapa(){map.invalidateSize();if(!sel.value)map.fitBounds(raLayer.getBounds(),{padding:fullPadding()});atualizarFundo();}

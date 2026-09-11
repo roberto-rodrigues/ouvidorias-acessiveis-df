@@ -74,6 +74,11 @@ Regras aplicadas no pipeline:
 - O crédito `© OpenStreetMap contributors` é exibido no canto inferior direito (controle de atribuição
   do Leaflet) sempre que os tiles estão visíveis.
 - A legenda é recolhível pelo título ("Legenda") e começa recolhida no mobile.
+- Controles no canto superior direito: **Mapa completo** (volta à visão inicial, limpa RA, busca e
+  filtros de recurso) e a **borracha** (limpa apenas a busca e a RA marcada; fica desabilitada quando
+  não há nada para limpar). A busca é insensível a acento e maiúsculas ("saude" encontra "Saúde").
+- A visão inicial usa `zoomSnap:0.25` para ampliar o enquadramento em passos fracionários sem cortar
+  nenhuma RA nas bordas (`padding` de 3 px no desktop e 10 px no mobile).
 
 ## Marcadores
 
