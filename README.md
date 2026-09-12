@@ -97,6 +97,10 @@ A partir do zoom 15 o agrupamento é desativado e cada ouvidoria aparece individ
 2. Inclua o órgão em `geo_sedes.py` se for novo.
 3. `make dados site` e commit.
 
+## Próximos passos
+
+Backlog priorizado em [`BACKLOG.md`](BACKLOG.md) (dados pendentes, acessibilidade do site, testes e publicação).
+
 ## Créditos
 
 Fundo cartográfico estilizado sem provedor externo · Limites territoriais: base oficial das RAs do DF (RA.json) + SES-DF (InfoSaúde) · Leaflet 1.9.4 (BSD-2) · Leaflet.markercluster 1.5.3 (MIT, vendorizado em `src/markercluster.*`).
