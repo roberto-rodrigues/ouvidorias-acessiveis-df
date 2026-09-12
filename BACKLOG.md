@@ -7,29 +7,33 @@ Situação atual (base consolidada: 66 ouvidorias):
 
 | Fonte da coordenada | Qtd | Observação |
 |---|---|---|
-| `validado` (equipe) | 61 | coordenada conferida manualmente |
+| `validado` (equipe) | 62 | coordenada conferida manualmente |
 | `shp` (shapefile SES-DF) | 3 | hospitais regionais HRC, HRG, HRPL |
-| `osm` (Nominatim) | 1 | SECOM — ainda sem conferência humana |
-| `aprox` | 1 | **ARÁQ (Água Quente)** — sem coordenada |
+| `aprox` | 1 | **ARÁQ (Água Quente)** — posicionada na RA; falta confirmar a sede |
+| `osm` | 0 | — |
 
 ---
 
 ## P0 — Fechar os dados
 
-- [ ] **ARÁQ — Administração Regional de Água Quente**: único ponto sem coordenada (fica no ponto-semente,
-  no Plano Piloto). Consequência: o marcador aparece longe da RA real e a RA derivada também sai errada.
-  - *Como*: obter o endereço da sede no portal da RA (`aguaquente.df.gov.br` → "Fale com a RA" /
-    "Sobre a RA") ou com a própria administração; preencher a linha em
-    `data/raw/ouvidorias_coords_validadas.csv` e rodar `make dados site`.
-  - *Pronto quando*: `fonte=validado` para ARÁQ e `aprox` = 0 na base.
-- [ ] **SECOM — validar a coordenada** hoje vinda do OpenStreetMap (`Anexo do Palácio do Buriti, Praça do Buriti`).
-  - *Pronto quando*: linha da SECOM no arquivo validado (`fonte=validado`).
-- [ ] **Confirmar 2 divergências entre endereço e RA derivada**:
-  - **NOVACAP** — endereço "SAP, Bloco A, Lote 1, SIA" mas o ponto cai na RA **Cruzeiro**.
-  - **UNDF** — endereço "Complexo de Ensino Superior, Lago Norte" mas o ponto cai na RA **Plano Piloto**.
-  - *Como*: ajustar o ponto ou criar uma lista de exceções de RA (mesma regra já usada para
-    Administrações Regionais em `src/build_dados.py`).
-  - *Pronto quando*: RA exibida bate com o endereço validado (ou com a justificativa registrada).
+- [x] **SECOM** — validada com a coordenada do complexo do Buriti já usada pela equipe em outros
+  5 órgãos (mesmo endereço). `fonte=validado`.
+- [x] **ARÁQ (Água Quente)** — posicionada dentro da própria RA (área urbana do Setor Habitacional
+  Água Quente, DF-280), em vez do ponto-semente no Plano Piloto. A RA passou a aparecer no filtro
+  do mapa, mesmo não existindo na base oficial das 33 RAs.
+  - *Falta*: confirmar o **endereço da sede da Administração Regional** com a própria RA
+    (`aguaquente.df.gov.br` → "Fale com a RA" não abre de fora; pedir por telefone/e-mail:
+    (61) 98279-0076 / lucia.silva@aguaquente.df.gov.br). Enquanto isso o ponto fica como `aprox`.
+- [ ] **DECISÃO PENDENTE — corrigir as coordenadas de UNDF e NOVACAP** (linhas prontas em
+  `data/processed/coordenadas_a_confirmar.csv`; **não aplicadas**, aguardando aprovação):
+  - **UNDF**: `-15.7369/-47.8864` (Plano Piloto) → candidato `-15.72518/-47.88460` (**Lago Norte**).
+    Endereço oficial SHIN CA 2, CEP 71503-502 (contrato UNdF 053858/2025, acordo CLDF 14/2024);
+    o bloco SHIN QI 2 do OSM tem o mesmo CEP e fica a ~1,3 km do ponto atual.
+  - **NOVACAP**: `-15.8033/-47.9356` (Cruzeiro) → candidato `-15.81753/-47.95289` (**Guará**).
+    Endereço oficial SAP Lote B, CEP 71215-000 (site da NOVACAP); o POI "Novacap" do OSM (CEP
+    71215-246) fica a ~1,7 km do ponto atual.
+  - *Pronto quando*: coordenada aplicada (ou divergência registrada como aceita) e RA exibida
+    coerente com o endereço.
 - [ ] (Opcional) marcar os 3 hospitais regionais como `validado`, já que a origem é o shapefile oficial
   da SES-DF — ou pedir confirmação de coordenada à SES.
 
