@@ -61,6 +61,8 @@ RA_ALIASES = {
     "arniqueiras": ra_lookup_loose.get("arniqueira", "Arniqueira"),
     "sudoeste/octogonal": ra_lookup_loose.get("sudoesteoctogonal", "Sudoeste/ Octogonal"),
     "sol nascente/por do sol": ra_lookup_loose.get("solnascentepordosol", "Sol Nascente/  Pôr do Sol"),
+    # RAs criadas depois da base oficial das 33 (Água Quente, lei 7.191/2022): entram apenas como RA declarada.
+    "agua quente": "Água Quente",
 }
 
 def ra_from_admin(org):

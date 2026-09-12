@@ -142,7 +142,8 @@ const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomU
  caret();h.onclick=()=>{d.classList.toggle('recolhida');caret()};
  return d};legend.addTo(map);
 const sel=document.getElementById('ra');
-[...new Set(RAS.features.map(f=>f.properties.RA))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
+// A lista de RAs inclui as que existem só nos dados (ex.: Água Quente, RA criada após a base das 33).
+[...new Set(RAS.features.map(f=>f.properties.RA).concat(PTS.features.map(f=>f.properties.RA)).filter(r=>r&&r!=='—'))].sort((a,b)=>a.localeCompare(b,'pt')).forEach(r=>sel.add(new Option(r,r)));
 const chips=document.getElementById('chips');const active=new Set();
 REC.forEach(r=>{const b=document.createElement('button');b.className='chip';b.textContent=sh(r);b.setAttribute('aria-pressed','false');
  b.onclick=()=>{active.has(r)?active.delete(r):active.add(r);b.setAttribute('aria-pressed',active.has(r));render()};chips.appendChild(b)});

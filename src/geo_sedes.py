@@ -24,6 +24,9 @@ SEDES = {
  "Secretaria de Estado de Obras e Infraestrutura": ("SODF", -15.8155, -47.9350, "aprox", "Setor de Áreas Públicas (SAP), Lote B"),
  "Companhia Imobiliária de Brasília (TERRACAP)": ("TERRACAP", -15.78206, -47.90798, "osm", "SAM, Bloco F, Ed. Sede TERRACAP"),
  "Administração Regional da Ceilândia": ("RA Ceilândia", -15.82265, -48.10070, "osm", "Administração Regional de Ceilândia – RA IX"),
+ # Água Quente (RA XXXV, criada em 2022) não está na base oficial das 33 RAs: usamos a área urbana
+ # do Setor Habitacional Água Quente (DF-280) como localização aproximada até a sede ser confirmada.
+ "Administração Regional de Água Quente": ("RA Água Quente", -15.94405, -48.23422, "aprox", "Setor Habitacional Água Quente (DF-280) – localização aproximada; sede da RA a confirmar"),
  "Secretaria de Estado de Saúde": ("SES-DF", -15.7877, -47.8862, "aprox", "SRTVN Quadra 701, Ed. PO700"),
  "Secretaria de Estado de Economia": ("SEEC", -15.78377, -47.90832, "osm", "Anexo do Palácio do Buriti, Praça do Buriti"),
  "Secretaria de Estado de Administração Penitenciária": ("SEAPE", -15.77619, -47.94080, "osm", "Sede SEAPE (SCIA)"),
