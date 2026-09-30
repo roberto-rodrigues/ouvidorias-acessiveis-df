@@ -153,6 +153,8 @@ header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-siz
 .legend .lg-note{display:none}
 .reset-map{padding:7px 9px;font-size:.84rem}
 }
+/* Em telas estreitas, manter a evidência e o link dentro da área visível do popup. */
+@media(max-width:600px){.leaflet-popup-content{max-height:min(45vh,285px);overflow-y:auto}}
 /* movimento: o unico momento e o pino respondendo ao ponteiro; respeita quem pediu menos */
 @media(prefers-reduced-motion:reduce){
 *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
@@ -215,7 +217,8 @@ function destacarRA(ra){selectedRA=ra||'';updateRAStyles();showRAName(selectedRA
 function focusRA(ra,animate=true){destacarRA(ra);const l=getRALayer(selectedRA);if(l)map.fitBounds(l.getBounds(),{padding:[70,70],animate})}
 // Mostra a ouvidoria: sempre aproxima até o nível de detalhe (ruas/casas) e abre o popup.
 function mostrarOuvidoria(m,y,x){const ALVO=16;
- const abrir=()=>{if(markers.getVisibleParent&&markers.getVisibleParent(m)!==m){markers.zoomToShowLayer(m,()=>m.openPopup())}else{m.openPopup()}};
+ const atualizarPopup=()=>{m.openPopup();setTimeout(()=>{if(m.isPopupOpen())m.getPopup().update()},400)};
+ const abrir=()=>{if(markers.getVisibleParent&&markers.getVisibleParent(m)!==m){markers.zoomToShowLayer(m,atualizarPopup)}else{atualizarPopup()}};
  if(map.getZoom()>=ALVO&&map.getCenter().equals(L.latLng(y,x))){abrir();return}
  map.once('moveend',abrir);map.setView([y,x],Math.max(ALVO,map.getZoom()),{animate:true})}
 function resetMapa(){selectedRA='';raNameLayer.clearLayers();sel.value='';document.getElementById('q').value='';active.clear();document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed','false'));render();updateRAStyles();map.fitBounds(raLayer.getBounds(),{padding:fullPadding(),animate:true});}
@@ -259,7 +262,7 @@ function render(){
   return (!q||semAcento(p.nome+p.orgao+p.RA+p.sigla).includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.marker([y,x],{icon:pinoIcon(p),riseOnHover:true,alt:p.nome+(p.fonte==='aprox'?' — localização aproximada':'')}).bindTooltip(p.nome+(p.fonte==='aprox'?' — localização aproximada':''),{direction:'top',offset:[0,-2],className:'pin-tip',opacity:1,sticky:false}).bindPopup(popup(p,y,x),{autoPan:true,maxWidth:330,autoPanPaddingTopLeft:L.point(10,60)});m.on('add',()=>{const el=m.getElement();if(el)el.setAttribute('aria-label',m.options.alt)});m.addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA);if(map.getZoom()<16){mostrarOuvidoria(m,y,x)}});
+  const m=L.marker([y,x],{icon:pinoIcon(p),riseOnHover:true,alt:p.nome+(p.fonte==='aprox'?' — localização aproximada':'')}).bindTooltip(p.nome+(p.fonte==='aprox'?' — localização aproximada':''),{direction:'top',offset:[0,-2],className:'pin-tip',opacity:1,sticky:false}).bindPopup(popup(p,y,x),{autoPan:true,maxWidth:Math.min(330,Math.max(180,map.getSize().x-120)),autoPanPaddingTopLeft:L.point(10,60)});m.on('add',()=>{const el=m.getElement();if(el)el.setAttribute('aria-label',m.options.alt)});m.addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA);if(map.getZoom()<16){mostrarOuvidoria(m,y,x)}});
   const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Abrir ouvidoria: '+p.nome);
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}${p.fonte==='validado'?' · <span class="badge b-valid">coord. validada</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
   const go=()=>{destacarRA(p.RA);mostrarOuvidoria(m,y,x);document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
