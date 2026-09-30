@@ -74,7 +74,8 @@ input[type=search]:focus,select:focus{outline:2px solid var(--azul-dado);outline
 .ic span{font-size:.72rem;background:var(--papel-2);color:var(--tinta-2);padding:2px 6px;border-radius:var(--raio)}
 /* mapa: fundo neutro. O gradiente pontilhado decorativo saiu — nao informava nada. */
 #map{height:100%;background:var(--map-bg);position:relative;overflow:hidden}
-#map .leaflet-pane,#map .leaflet-control-container{z-index:2}
+/* Respeita a hierarquia de panes do Leaflet: marcadores acima das RAs,
+   popups acima dos marcadores e controles acima do mapa. */
 .leaflet-container{background:transparent}
 .leaflet-interactive{filter:drop-shadow(0 1px 2px rgba(11,28,43,.16))}
 .leaflet-tooltip.ra-label{background:#fff;color:var(--tinta);border:0;border-radius:var(--raio);box-shadow:0 2px 8px rgba(11,28,43,.2);font-weight:700;font-size:1.02rem;letter-spacing:0;padding:5px 9px}
@@ -85,6 +86,7 @@ input[type=search]:focus,select:focus{outline:2px solid var(--azul-dado);outline
 .mc-icon span{font-size:.78rem;letter-spacing:-.02em}
 .mc-icon:hover{background:var(--azul-dado)}
 .pino svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 3px rgba(11,28,43,.3));transform-origin:50% 100%;transition:transform .12s}
+.pino-aprox svg path{stroke:var(--ambar);stroke-width:4}
 .pino:hover svg{transform:scale(1.12)}
 .leaflet-control-attribution{background:rgba(255,255,255,.92);color:var(--tinta);font-size:.7rem;padding:2px 6px;border-radius:var(--raio) 0 0 0}
 .leaflet-control-attribution a{color:var(--tinta);text-decoration:underline}
@@ -96,8 +98,9 @@ input[type=search]:focus,select:focus{outline:2px solid var(--azul-dado);outline
 .popup b{color:var(--tinta)}
 .popup ul{margin:6px 0 0 16px;padding:0;font-size:.88rem}
 .legend{background:rgba(255,255,255,.96);padding:8px 12px 10px;border-radius:var(--raio);font-size:.84rem;line-height:1.6;box-shadow:0 2px 10px rgba(11,28,43,.16);border:1px solid var(--b)}
-.legend h4{margin:0 0 4px;font-size:.86rem;font-weight:700;color:var(--tinta);cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:space-between;letter-spacing:0}
-.legend h4 span{font-size:.72rem}
+.legend h4{margin:0 0 4px;font-size:.86rem;font-weight:700;color:var(--tinta);letter-spacing:0}
+.legend-toggle{font:inherit;color:inherit;background:transparent;border:0;padding:0;cursor:pointer;width:100%;display:flex;align-items:center;gap:6px;justify-content:space-between;text-align:left}
+.legend-toggle span{font-size:.72rem}
 .legend.recolhida .lg-body{display:none}
 .legend.recolhida h4{margin:0}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
@@ -161,7 +164,7 @@ header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-siz
 <body>
 <a class="skip" href="#lista">Ir para a lista de ouvidorias</a>
 <header>
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="9" r="3"/><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="12" cy="9" r="3"/><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>
   <h1>Ouvidorias Acessíveis do Distrito Federal</h1>
   <span class="tag">Selo Acessibilidade 2024/2025 · __N__ ouvidorias</span>
 </header>
@@ -174,10 +177,10 @@ header h1{white-space:normal;line-height:1.15;flex:1 1 100%;min-width:0;font-siz
   <select id="ra"><option value="">Todas as RAs</option></select>
   <h2>Recursos de acessibilidade</h2>
   <div class="chips" id="chips" role="group" aria-label="Filtrar por recurso"></div>
-  <h2 id="lista">Ouvidorias <span class="count" id="count"></span></h2>
+  <h2 id="lista">Ouvidorias <span class="count" id="count" role="status" aria-live="polite"></span></h2>
   <div id="cards"></div>
 </aside>
-<main><div id="map" role="application" aria-label="Mapa das ouvidorias do DF"></div></main>
+<main><div id="map" role="region" aria-label="Mapa das ouvidorias do DF"></div></main>
 </div>
 <script>__LJS__</script>
 <script>__MCJS__</script>
@@ -227,10 +230,10 @@ const botoesControl=L.control({position:'topright'});botoesControl.onAdd=()=>{co
  L.DomEvent.disableClickPropagation(b2);b2.onclick=limparFiltros;
  return d};botoesControl.addTo(map);
 const legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');
- d.innerHTML='<h4>Legenda <span aria-hidden="true">▾</span></h4><div class="lg-body"><b>Marcadores</b><br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#16a34a" stroke="#fff" stroke-width="3"/></svg>Libras presencial<br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#3b82f6" stroke="#fff" stroke-width="3"/></svg>Sem Libras presencial<br><span class="lg-note"><small>Pino maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br><small>Aproxime (zoom 13+) para ver ruas e prédios</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span></div>';
- if(window.innerWidth<800){d.classList.add('recolhida')}
- const h=d.querySelector('h4');L.DomEvent.disableClickPropagation(h);
- const caret=()=>{const s=h.querySelector('span');if(s)s.textContent=d.classList.contains('recolhida')?'▸':'▾'};
+ d.innerHTML='<h4><button type="button" class="legend-toggle" aria-controls="legend-body" aria-expanded="true">Legenda <span aria-hidden="true">▾</span></button></h4><div class="lg-body" id="legend-body"><b>Marcadores</b><br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#16a34a" stroke="#fff" stroke-width="3"/></svg>Libras presencial<br><svg width="11" height="16" viewBox="0 0 24 36" style="vertical-align:-3px;margin-right:5px"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="#3b82f6" stroke="#fff" stroke-width="3"/></svg>Sem Libras presencial<br><span class="marker-status">Contorno âmbar = localização aproximada</span><br><span class="lg-note"><small>Pino maior = mais itens de acessibilidade</small><br><small>Agrupamento (nº) = clique para aproximar</small><br><small>Aproxime (zoom 13+) para ver ruas e prédios</small><br></span><hr style="margin:7px 0;border:none;border-top:1px solid #d7e1e8"><b>Regiões Administrativas</b><br><span style="display:inline-block;width:12px;height:12px;border:1.5px solid #c7d8df;background:#789099;vertical-align:middle;margin-right:6px"></span>Mapa cinza-azulado<br><span class="lg-note"><small>Clique numa RA para filtrar · botão “Mapa completo” reseta</small></span></div>';
+ d.classList.add('recolhida'); // evita cobrir pinos na visão geral; botão Legenda expande sob demanda
+ const h=d.querySelector('.legend-toggle');L.DomEvent.disableClickPropagation(h);
+ const caret=()=>{const s=h.querySelector('span');const open=!d.classList.contains('recolhida');h.setAttribute('aria-expanded',String(open));if(s)s.textContent=open?'▾':'▸'};
  caret();h.onclick=()=>{d.classList.toggle('recolhida');caret()};
  return d};legend.addTo(map);
 const sel=document.getElementById('ra');
@@ -243,7 +246,7 @@ const col=p=>p.libras==='Sim'?'#16a34a':'#3b82f6';
 const semAcento=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 // Marcador em forma de pino (ponteiro) com "i" de informação; a ponta fica exatamente na coordenada.
 function pinoHTML(cor){return '<svg viewBox="0 0 24 36" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 9.4 12 24 12 24s12-14.6 12-24C24 5.37 18.63 0 12 0Z" fill="'+cor+'" stroke="#ffffff" stroke-width="2"/><circle cx="12" cy="12" r="6.3" fill="#ffffff"/><text x="12" y="16" text-anchor="middle" font-size="11.5" font-weight="800" fill="'+cor+'" font-family="system-ui,Segoe UI,Roboto,sans-serif">i</text></svg>'}
-function pinoIcon(p){const h=Math.round(30+p.n_itens*1.3),w=Math.round(h*2/3);return L.divIcon({className:'pino',html:pinoHTML(col(p)),iconSize:L.point(w,h),iconAnchor:L.point(w/2,h),popupAnchor:L.point(0,-h+6),tooltipAnchor:L.point(0,-h)})}
+function pinoIcon(p){const h=Math.round(30+p.n_itens*1.3),w=Math.round(h*2/3);return L.divIcon({className:p.fonte==='aprox'?'pino pino-aprox':'pino',html:pinoHTML(col(p)),iconSize:L.point(w,h),iconAnchor:L.point(w/2,h),popupAnchor:L.point(0,-h+6),tooltipAnchor:L.point(0,-h)})}
 function clusterIcon(cluster){const n=cluster.getChildCount();const d=n<10?34:(n<30?42:50);return L.divIcon({html:'<div class="mc-icon" style="width:'+d+'px;height:'+d+'px"><span>'+n+'</span></div>',className:'',iconSize:L.point(d,d)})}
 const markers=L.markerClusterGroup({maxClusterRadius:45,showCoverageOnHover:false,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,removeOutsideVisibleBounds:true,iconCreateFunction:clusterIcon}).addTo(map);let cur=null;
 function popup(p,y,x){return `<div class="popup"><b>${p.nome}</b><br><small>${p.orgao}</small><br><small>${p.endereco} · RA ${p.RA}</small><br>
@@ -256,8 +259,8 @@ function render(){
   return (!q||semAcento(p.nome+p.orgao+p.RA+p.sigla).includes(q))&&(!ra||p.RA===ra)&&[...active].every(a=>p.acess.includes(a))});
  markers.clearLayers();const cards=document.getElementById('cards');cards.innerHTML='';
  list.forEach((f,i)=>{const p=f.properties,[x,y]=f.geometry.coordinates;
-  const m=L.marker([y,x],{icon:pinoIcon(p),riseOnHover:true}).bindTooltip(p.nome,{direction:'top',offset:[0,-2],className:'pin-tip',opacity:1,sticky:false}).bindPopup(popup(p,y,x),{autoPan:false,maxWidth:330}).addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA);if(map.getZoom()<16){mostrarOuvidoria(m,y,x)}});
-  const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
+  const m=L.marker([y,x],{icon:pinoIcon(p),riseOnHover:true,alt:p.nome+(p.fonte==='aprox'?' — localização aproximada':'')}).bindTooltip(p.nome+(p.fonte==='aprox'?' — localização aproximada':''),{direction:'top',offset:[0,-2],className:'pin-tip',opacity:1,sticky:false}).bindPopup(popup(p,y,x),{autoPan:true,maxWidth:330,autoPanPaddingTopLeft:L.point(10,60)});m.on('add',()=>{const el=m.getElement();if(el)el.setAttribute('aria-label',m.options.alt)});m.addTo(markers);m.on('click',(e)=>{L.DomEvent.stopPropagation(e);destacarRA(p.RA);if(map.getZoom()<16){mostrarOuvidoria(m,y,x)}});
+  const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Abrir ouvidoria: '+p.nome);
   c.innerHTML=`<b>${p.nome}</b><small>${p.orgao}</small><br><small>RA ${p.RA}${p.fonte==='aprox'?' · <span class="badge b-aprox">local aprox.</span>':''}${p.fonte==='validado'?' · <span class="badge b-valid">coord. validada</span>':''}</small><div class="ic">${p.acess.map(a=>'<span>'+sh(a)+'</span>').join('')}</div>`;
   const go=()=>{destacarRA(p.RA);mostrarOuvidoria(m,y,x);document.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));c.classList.add('active')};
   c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};cards.appendChild(c)});
